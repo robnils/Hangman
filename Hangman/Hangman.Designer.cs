@@ -314,6 +314,7 @@
             this.buttonNew.Text = "New";
             this.buttonNew.UseVisualStyleBackColor = true;
             this.buttonNew.Click += new System.EventHandler(this.button7_Click);
+            this.buttonNew.Paint += new System.Windows.Forms.PaintEventHandler(this.Hangman_Paint);
             // 
             // textBoxEntry
             // 
@@ -322,6 +323,7 @@
             this.textBoxEntry.Size = new System.Drawing.Size(234, 20);
             this.textBoxEntry.TabIndex = 32;
             this.textBoxEntry.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxEntry.TextChanged += new System.EventHandler(this.textBoxEntry_TextChanged);
             // 
             // Hangman
             // 

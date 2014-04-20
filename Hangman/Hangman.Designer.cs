@@ -327,6 +327,7 @@
             this.textBoxTest.Name = "textBoxTest";
             this.textBoxTest.Size = new System.Drawing.Size(51, 20);
             this.textBoxTest.TabIndex = 33;
+            this.textBoxTest.TextChanged += new System.EventHandler(this.textBoxTest_TextChanged);
             // 
             // button1
             // 
@@ -357,17 +358,17 @@
             // 
             // richTextBoxDisplay
             // 
-            this.richTextBoxDisplay.Location = new System.Drawing.Point(199, 56);
+            this.richTextBoxDisplay.Location = new System.Drawing.Point(171, 56);
             this.richTextBoxDisplay.Multiline = false;
             this.richTextBoxDisplay.Name = "richTextBoxDisplay";
-            this.richTextBoxDisplay.Size = new System.Drawing.Size(255, 69);
+            this.richTextBoxDisplay.Size = new System.Drawing.Size(334, 69);
             this.richTextBoxDisplay.TabIndex = 38;
             this.richTextBoxDisplay.Text = "";
             this.richTextBoxDisplay.WordWrap = false;
             // 
             // richTextBoxEntry
             // 
-            this.richTextBoxEntry.Location = new System.Drawing.Point(255, 178);
+            this.richTextBoxEntry.Location = new System.Drawing.Point(271, 176);
             this.richTextBoxEntry.Name = "richTextBoxEntry";
             this.richTextBoxEntry.Size = new System.Drawing.Size(144, 53);
             this.richTextBoxEntry.TabIndex = 39;

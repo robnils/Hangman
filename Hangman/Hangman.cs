@@ -33,12 +33,20 @@ namespace Hangman
 
         private void Hangman_Load(object sender, EventArgs e)
         {
+            // Display Text box
             richTextBoxDisplay.SelectAll();
-            richTextBoxDisplay.SelectionAlignment = HorizontalAlignment.Center;
+            richTextBoxDisplay.SelectionAlignment = HorizontalAlignment.Center;            
+            richTextBoxDisplay.Font = new Font("Comic Sans MS", 25.0F,FontStyle.Regular);
+            richTextBoxDisplay.ForeColor = Color.Blue;
             richTextBoxDisplay.Text = "_AA_AB";
-            richTextBoxDisplay.Font = new Font(new FontFamily("Comic Sans MS"), 25.0F);
-            
+                        
 
+            // Typing text box
+            richTextBoxEntry.SelectAll();
+            richTextBoxEntry.SelectionAlignment = HorizontalAlignment.Center;            
+            richTextBoxEntry.Font = new Font("Comic Sans MS", 25.0F, FontStyle.Regular);
+            richTextBoxEntry.ForeColor = Color.Red;
+            richTextBoxEntry.Text = "X";           
 
         }
 
@@ -90,6 +98,26 @@ namespace Hangman
             }
 
             //textBoxEntry.Text = "";
+        }
+
+        // BROKEN CURRENTLY
+        private void textBoxTest_TextChanged(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            string text = "";
+
+            i = Convert.ToInt32(textBoxTest.Text);
+
+            while(j < i)
+            {
+                text += "_";
+                text += " ";
+
+                ++j;
+            }
+            
+            textBoxTest.Text = text;
         }
     }
 }

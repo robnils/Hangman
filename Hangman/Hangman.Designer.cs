@@ -56,7 +56,12 @@
             this.button34 = new System.Windows.Forms.Button();
             this.button35 = new System.Windows.Forms.Button();
             this.buttonNew = new System.Windows.Forms.Button();
-            this.textBoxEntry = new System.Windows.Forms.TextBox();
+            this.textBoxTest = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.richTextBoxDisplay = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxEntry = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -291,7 +296,7 @@
             // 
             this.button34.Location = new System.Drawing.Point(460, 338);
             this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(79, 33);
+            this.button34.Size = new System.Drawing.Size(179, 33);
             this.button34.TabIndex = 30;
             this.button34.Text = "Space";
             this.button34.UseVisualStyleBackColor = true;
@@ -316,21 +321,69 @@
             this.buttonNew.Click += new System.EventHandler(this.button7_Click);
             this.buttonNew.Paint += new System.Windows.Forms.PaintEventHandler(this.Hangman_Paint);
             // 
-            // textBoxEntry
+            // textBoxTest
             // 
-            this.textBoxEntry.Location = new System.Drawing.Point(205, 220);
-            this.textBoxEntry.Name = "textBoxEntry";
-            this.textBoxEntry.Size = new System.Drawing.Size(234, 20);
-            this.textBoxEntry.TabIndex = 32;
-            this.textBoxEntry.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxEntry.TextChanged += new System.EventHandler(this.textBoxEntry_TextChanged);
+            this.textBoxTest.Location = new System.Drawing.Point(97, 18);
+            this.textBoxTest.Name = "textBoxTest";
+            this.textBoxTest.Size = new System.Drawing.Size(51, 20);
+            this.textBoxTest.TabIndex = 33;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(571, 260);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(44, 33);
+            this.button1.TabIndex = 34;
+            this.button1.Text = "Å";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(545, 299);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(44, 33);
+            this.button7.TabIndex = 35;
+            this.button7.Text = "Ö";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(595, 299);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(44, 33);
+            this.button8.TabIndex = 36;
+            this.button8.Text = "Ä";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // richTextBoxDisplay
+            // 
+            this.richTextBoxDisplay.Location = new System.Drawing.Point(199, 56);
+            this.richTextBoxDisplay.Multiline = false;
+            this.richTextBoxDisplay.Name = "richTextBoxDisplay";
+            this.richTextBoxDisplay.Size = new System.Drawing.Size(255, 69);
+            this.richTextBoxDisplay.TabIndex = 38;
+            this.richTextBoxDisplay.Text = "";
+            this.richTextBoxDisplay.WordWrap = false;
+            // 
+            // richTextBoxEntry
+            // 
+            this.richTextBoxEntry.Location = new System.Drawing.Point(255, 178);
+            this.richTextBoxEntry.Name = "richTextBoxEntry";
+            this.richTextBoxEntry.Size = new System.Drawing.Size(144, 53);
+            this.richTextBoxEntry.TabIndex = 39;
+            this.richTextBoxEntry.Text = "";
             // 
             // Hangman
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 394);
-            this.Controls.Add(this.textBoxEntry);
+            this.ClientSize = new System.Drawing.Size(677, 394);
+            this.Controls.Add(this.richTextBoxEntry);
+            this.Controls.Add(this.richTextBoxDisplay);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBoxTest);
             this.Controls.Add(this.buttonNew);
             this.Controls.Add(this.button34);
             this.Controls.Add(this.button35);
@@ -399,7 +452,12 @@
         private System.Windows.Forms.Button button34;
         private System.Windows.Forms.Button button35;
         private System.Windows.Forms.Button buttonNew;
-        private System.Windows.Forms.TextBox textBoxEntry;
+        private System.Windows.Forms.TextBox textBoxTest;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.RichTextBox richTextBoxDisplay;
+        private System.Windows.Forms.RichTextBox richTextBoxEntry;
     }
 }
 

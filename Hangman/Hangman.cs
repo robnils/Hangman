@@ -94,7 +94,7 @@ namespace Hangman
 
         public void Initialise(string cw)
         {
-            currentWord = cw;
+            //currentWord = cw;
             guessword = "";
 
             // Initialise the guessword
@@ -109,7 +109,7 @@ namespace Hangman
 
             for (int i = 0; i < text.Length; ++i)
             {
-                tmp += guessword[i];
+                tmp += text[i];
                 tmp += " ";
             }
 

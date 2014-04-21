@@ -73,6 +73,7 @@
             this.radioButtonEasy = new System.Windows.Forms.RadioButton();
             this.radioButtonMedium = new System.Windows.Forms.RadioButton();
             this.radioButtonHard = new System.Windows.Forms.RadioButton();
+            this.richTextBoxGuessed = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -352,7 +353,7 @@
             // 
             this.buttonNew.Location = new System.Drawing.Point(12, 12);
             this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(70, 38);
+            this.buttonNew.Size = new System.Drawing.Size(123, 38);
             this.buttonNew.TabIndex = 31;
             this.buttonNew.Text = "New Game";
             this.buttonNew.UseVisualStyleBackColor = true;
@@ -438,7 +439,7 @@
             // 
             // textBoxGuessed
             // 
-            this.textBoxGuessed.Location = new System.Drawing.Point(471, 167);
+            this.textBoxGuessed.Location = new System.Drawing.Point(464, 131);
             this.textBoxGuessed.Name = "textBoxGuessed";
             this.textBoxGuessed.Size = new System.Drawing.Size(182, 20);
             this.textBoxGuessed.TabIndex = 42;
@@ -476,7 +477,7 @@
             // 
             // buttonWord
             // 
-            this.buttonWord.Location = new System.Drawing.Point(91, 12);
+            this.buttonWord.Location = new System.Drawing.Point(271, 12);
             this.buttonWord.Name = "buttonWord";
             this.buttonWord.Size = new System.Drawing.Size(124, 38);
             this.buttonWord.TabIndex = 47;
@@ -486,7 +487,7 @@
             // radioButtonEasy
             // 
             this.radioButtonEasy.AutoSize = true;
-            this.radioButtonEasy.Location = new System.Drawing.Point(554, 193);
+            this.radioButtonEasy.Location = new System.Drawing.Point(545, 165);
             this.radioButtonEasy.Name = "radioButtonEasy";
             this.radioButtonEasy.Size = new System.Drawing.Size(87, 17);
             this.radioButtonEasy.TabIndex = 48;
@@ -498,7 +499,7 @@
             // radioButtonMedium
             // 
             this.radioButtonMedium.AutoSize = true;
-            this.radioButtonMedium.Location = new System.Drawing.Point(554, 216);
+            this.radioButtonMedium.Location = new System.Drawing.Point(545, 202);
             this.radioButtonMedium.Name = "radioButtonMedium";
             this.radioButtonMedium.Size = new System.Drawing.Size(101, 17);
             this.radioButtonMedium.TabIndex = 49;
@@ -510,7 +511,7 @@
             // radioButtonHard
             // 
             this.radioButtonHard.AutoSize = true;
-            this.radioButtonHard.Location = new System.Drawing.Point(554, 239);
+            this.radioButtonHard.Location = new System.Drawing.Point(545, 237);
             this.radioButtonHard.Name = "radioButtonHard";
             this.radioButtonHard.Size = new System.Drawing.Size(87, 17);
             this.radioButtonHard.TabIndex = 50;
@@ -519,12 +520,21 @@
             this.radioButtonHard.UseVisualStyleBackColor = true;
             this.radioButtonHard.CheckedChanged += new System.EventHandler(this.radioButtonHard_CheckedChanged);
             // 
+            // richTextBoxGuessed
+            // 
+            this.richTextBoxGuessed.Location = new System.Drawing.Point(20, 260);
+            this.richTextBoxGuessed.Name = "richTextBoxGuessed";
+            this.richTextBoxGuessed.Size = new System.Drawing.Size(626, 129);
+            this.richTextBoxGuessed.TabIndex = 51;
+            this.richTextBoxGuessed.Text = "";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(677, 394);
+            this.Controls.Add(this.richTextBoxGuessed);
             this.Controls.Add(this.radioButtonHard);
             this.Controls.Add(this.radioButtonMedium);
             this.Controls.Add(this.radioButtonEasy);
@@ -573,7 +583,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Main";
-            this.Text = "HangMania v.0,1";
+            this.Text = "HangMania v.0.1";
             this.Load += new System.EventHandler(this.Hangman_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Hangman_Paint);
             this.ResumeLayout(false);
@@ -628,6 +638,7 @@
         private System.Windows.Forms.RadioButton radioButtonEasy;
         private System.Windows.Forms.RadioButton radioButtonMedium;
         private System.Windows.Forms.RadioButton radioButtonHard;
+        private System.Windows.Forms.RichTextBox richTextBoxGuessed;
     }
 }
 

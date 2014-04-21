@@ -62,10 +62,26 @@ namespace Hangman
             richTextBoxLives.Font = new Font("Comic Sans MS", 55.0F, FontStyle.Regular);
             richTextBoxLives.ForeColor = Color.Green;
 
+            // Guessed Values
+            textBoxGuessed.Visible = false;
+            richTextBoxGuessed.SelectAll();
+            richTextBoxGuessed.SelectionAlignment = HorizontalAlignment.Center;
+            richTextBoxGuessed.Font = new Font("Comic Sans MS", 35.0F, FontStyle.Regular);
+            richTextBoxGuessed.ForeColor = Color.Violet;
+
             // Difficulty settings
             radioButtonEasy.Checked = false;
             radioButtonMedium.Checked = true;
             radioButtonHard.Checked = false;
+
+            // Buttons
+            buttonNew.Font = new Font("Comic Sans MS", 12.0F, FontStyle.Bold);
+            buttonExit.Font = new Font("Comic Sans MS", 12.0F, FontStyle.Bold);
+
+            // Radiobuttons
+            radioButtonEasy.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
+            radioButtonMedium.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
+            radioButtonHard.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
 
             // Hide diagnostic buttons
             textBox1.Visible = false;
@@ -107,6 +123,7 @@ namespace Hangman
             textBoxLives.Text = Convert.ToString(h.Lives);
             richTextBoxLives.Text = Convert.ToString(h.Lives);
             textBoxGuessed.Text = h.GuessedValues;
+            richTextBoxGuessed.Text = h.GuessedValues;
 
             // Don't let user change diffculty during game
             radioButtonEasy.Enabled = false;
@@ -188,8 +205,9 @@ namespace Hangman
             {
                 textBoxAlreadyGuessed.Text = ""; // Reset the notification
                 h.GuessedValues += richTextBoxEntry.Text; // add entered text to guessed values
-                h.GuessedValues += ","; // nicer formatting
+                h.GuessedValues += "-"; // nicer formatting
                 textBoxGuessed.Text = h.GuessedValues; // display it
+                richTextBoxGuessed.Text = h.GuessedValues;
 
                 // 
                 // Add code to test if the key is correct, was entered before, deduct lives
@@ -264,6 +282,7 @@ namespace Hangman
             richTextBoxDisplay.Text = " ";
             richTextBoxEntry.Text = " ";
             textBoxGuessed.Text = " ";
+            richTextBoxGuessed.Text = " ";
 
             // Rename "New Game" button
             buttonNew.Text = "Play again?";

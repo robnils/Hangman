@@ -25,6 +25,8 @@ namespace Hangman
         //private int initx = 50;
         //private int inity = 150;
         //private int length = 120;
+        private Hangman h;
+        private string[] lines;
                 
         public Main()
         {
@@ -33,6 +35,9 @@ namespace Hangman
 
         private void Hangman_Load(object sender, EventArgs e)
         {
+            h = new Hangman();
+            lines = h.Load();
+
             // Display Text box
             richTextBoxDisplay.SelectAll();
             richTextBoxDisplay.SelectionAlignment = HorizontalAlignment.Center;            
@@ -46,7 +51,11 @@ namespace Hangman
             richTextBoxEntry.SelectionAlignment = HorizontalAlignment.Center;            
             richTextBoxEntry.Font = new Font("Comic Sans MS", 25.0F, FontStyle.Regular);
             richTextBoxEntry.ForeColor = Color.Red;
-            richTextBoxEntry.Text = "X";           
+            richTextBoxEntry.Text = "X";   
+        
+            
+
+            //textBox1.Text = lines[1];
 
         }
 
@@ -68,7 +77,7 @@ namespace Hangman
         // New Button
         private void button7_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text = h.ReturnRnd();
         }
 
       
@@ -105,34 +114,22 @@ namespace Hangman
         {
             Hangman h = new Hangman();
 
-            richTextBoxDisplay.Text=h.Draw(textBoxTest.Text, 10, richTextBoxDisplay.Text);
-            /*             
-            int i = 0;
-            int j = 0;
-            string text = "";
-
-            // The Convert.ToIn32() method will break if you enter "" - this test prevents that
-            if (textBoxTest.Text != "")
-            {
-                i = Convert.ToInt32(textBoxTest.Text);
-
-                while (j < i)
-                {
-                    text += "_";
-                    text += " ";
-
-                    ++j;
-                }
-
-                // So we don't display 0 numbers of _
-                if (i > 0)
-                    richTextBoxDisplay.Text = text;
-            }*/
+            richTextBoxDisplay.Text=h.Draw(textBoxTest.Text, 10, richTextBoxDisplay.Text);           
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void richTextBoxEntry_TextChanged(object sender, EventArgs e)
+        {
+            // Make all entered text upper - looks neater
+            String s = "";
+            s=richTextBoxEntry.Text;
+            richTextBoxEntry.Text = s.ToUpper(); 
+
+            
         }
     }
 }

@@ -63,6 +63,7 @@
             this.richTextBoxDisplay = new System.Windows.Forms.RichTextBox();
             this.richTextBoxEntry = new System.Windows.Forms.RichTextBox();
             this.buttonExit = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -374,6 +375,7 @@
             this.richTextBoxEntry.Size = new System.Drawing.Size(144, 53);
             this.richTextBoxEntry.TabIndex = 39;
             this.richTextBoxEntry.Text = "";
+            this.richTextBoxEntry.TextChanged += new System.EventHandler(this.richTextBoxEntry_TextChanged);
             // 
             // buttonExit
             // 
@@ -385,11 +387,19 @@
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
-            // Hangman
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(22, 167);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(146, 20);
+            this.textBox1.TabIndex = 41;
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 394);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.richTextBoxEntry);
             this.Controls.Add(this.richTextBoxDisplay);
@@ -426,8 +436,8 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonQ);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "Hangman";
-            this.Text = "Hangman";
+            this.Name = "Main";
+            this.Text = "-";
             this.Load += new System.EventHandler(this.Hangman_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Hangman_Paint);
             this.ResumeLayout(false);
@@ -472,6 +482,7 @@
         private System.Windows.Forms.RichTextBox richTextBoxDisplay;
         private System.Windows.Forms.RichTextBox richTextBoxEntry;
         private System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

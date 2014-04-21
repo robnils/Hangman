@@ -4,14 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.IO;
+
 namespace Hangman
 {
     class Hangman
     {
+        private Random r = new Random();
+        private string[] lines;
 
         public Hangman()
         {
 
+        }
+
+        //Load file with the words - words.txt
+        public string[] Load()
+        {
+            string s = Directory.GetCurrentDirectory();
+            s += "\\Words.txt";
+
+            lines = System.IO.File.ReadAllLines(s);
+
+            return lines;
+        }
+
+        // Returns a random word from the list of words
+        public string ReturnRnd()
+        {           
+            return lines[r.Next(0, lines.Length)];
         }
 
         // Draws num values of _ into display, up to a max

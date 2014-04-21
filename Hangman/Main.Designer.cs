@@ -68,6 +68,7 @@
             this.textBoxLives = new System.Windows.Forms.TextBox();
             this.labelLives = new System.Windows.Forms.Label();
             this.textBoxAlreadyGuessed = new System.Windows.Forms.TextBox();
+            this.richTextBoxLives = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -396,7 +397,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(22, 167);
+            this.textBox1.Location = new System.Drawing.Point(12, 56);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(146, 20);
             this.textBox1.TabIndex = 41;
@@ -426,16 +427,25 @@
             // 
             // textBoxAlreadyGuessed
             // 
-            this.textBoxAlreadyGuessed.Location = new System.Drawing.Point(22, 208);
+            this.textBoxAlreadyGuessed.Location = new System.Drawing.Point(271, 131);
             this.textBoxAlreadyGuessed.Name = "textBoxAlreadyGuessed";
             this.textBoxAlreadyGuessed.Size = new System.Drawing.Size(146, 20);
             this.textBoxAlreadyGuessed.TabIndex = 45;
+            // 
+            // richTextBoxLives
+            // 
+            this.richTextBoxLives.Location = new System.Drawing.Point(20, 114);
+            this.richTextBoxLives.Name = "richTextBoxLives";
+            this.richTextBoxLives.Size = new System.Drawing.Size(135, 128);
+            this.richTextBoxLives.TabIndex = 46;
+            this.richTextBoxLives.Text = "";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 394);
+            this.Controls.Add(this.richTextBoxLives);
             this.Controls.Add(this.textBoxAlreadyGuessed);
             this.Controls.Add(this.labelLives);
             this.Controls.Add(this.textBoxLives);
@@ -528,6 +538,7 @@
         private System.Windows.Forms.TextBox textBoxLives;
         private System.Windows.Forms.Label labelLives;
         private System.Windows.Forms.TextBox textBoxAlreadyGuessed;
+        private System.Windows.Forms.RichTextBox richTextBoxLives;
     }
 }
 

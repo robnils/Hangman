@@ -17,7 +17,8 @@ using System.Drawing.Drawing2D;
  * 
  *  add lives and guesed values to hangman.cs
  *  add method to remove played words so they dont appear till the next game
- * 
+ *  open file dialog to specific the words source file so theyre not hardcoded and users can download new ones
+ *  throw exception if cant open save file
 */
 namespace Hangman
 {
@@ -34,10 +35,7 @@ namespace Hangman
         private void Hangman_Load(object sender, EventArgs e)
         {
             // Initialisations
-            //h = new Hangman();
-            //lines = h.Load();
             textBoxLives.Enabled = false;
-            //textBoxLives.Text = Convert.ToString(h.Lives);
             richTextBoxEntry.Enabled = false;
             textBoxGuessed.Enabled = false;
 
@@ -51,7 +49,10 @@ namespace Hangman
             richTextBoxEntry.SelectAll();
             richTextBoxEntry.SelectionAlignment = HorizontalAlignment.Center;            
             richTextBoxEntry.Font = new Font("Comic Sans MS", 25.0F, FontStyle.Regular);
-            richTextBoxEntry.ForeColor = Color.Red;            
+            richTextBoxEntry.ForeColor = Color.Red;      
+      
+            // Hide diagnostic buttons
+            textBox1.Visible = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -76,7 +77,7 @@ namespace Hangman
             // Create a new instance for each game 
             // Easiest way - uses constructed to initialise everything
             h = new Hangman(); 
-            lines = h.Load();
+            lines = h.Load(); // Loads the list of words
             textBoxLives.Text = Convert.ToString(h.Lives);
             textBoxGuessed.Text = h.GuessedValues;
 
@@ -84,15 +85,16 @@ namespace Hangman
             int num = 0;
             st = h.ReturnRnd(); // returns a random word from the list
             h.CurrentWord = st; // Updates the class with the current word
-            textBox1.Text = st;
+            textBox1.Text = st; // Diagnostic purposes
 
             foreach (char c in st)
             {
                 ++num;
             }
- 
-            h.Word = h.Draw(num, 10); // The word the user sees starts off as all _'s
-            richTextBoxDisplay.Text = h.Word;
+
+            richTextBoxDisplay.Text = h.Draw(num, 10); // The word the user sees starts off as all _'s
+           // richTextBoxDisplay.Text = h.Word;
+            h.Initialise(st);
             richTextBoxEntry.Enabled = true;
 
             // Gives focus of form onto the textbox
@@ -162,30 +164,56 @@ namespace Hangman
                 // Add code to test if the key is correct, was entered before, deduct lives
                 //
                 // If character is guessed correctly (returns true)
-                if (h.Test(richTextBoxEntry.Text))
-                    h.Uncover(); // Uncover 
+                h.Test(richTextBoxEntry.Text);                    
 
                 // If the game is over, stop
-                else if(h.GameOver == true)
+                if(h.GameOver == true)
                 {
-                    // Graphical glitch quick fix
-                    textBoxLives.Text = "0";
+                    if (h.GameWin == false)
+                    {
+                        // Graphical glitch quick fix
+                        textBoxLives.Text = "0";
 
-                    // Reveal all the letters 
+                        // Reveal all the letters 
+                        richTextBoxDisplay.Text = h.AddSpaces(h.CurrentWord);
 
-                    // Make boxes enabled/disabled
-                    richTextBoxEntry.Enabled = false;
+                        // Make boxes enabled/disabled
+                        richTextBoxEntry.Enabled = false;
 
-                    // Ask do they want to play again?
-                    DialogResult dialog = MessageBox.Show("Game over! Play again?",
-                        "Game over!",MessageBoxButtons.YesNo);
+                        // Ask do they want to play again?
+                        DialogResult dialog = MessageBox.Show("Too bad, you lose! Play again?",
+                            "Game over!", MessageBoxButtons.YesNo);
 
-                    // Click New button
-                    if (dialog == DialogResult.Yes)
-                        button7_Click(sender, e);
+                        // Click New button
+                        if (dialog == DialogResult.Yes)
+                            button7_Click(sender, e);
+
+                        else
+                            buttonExit_Click(sender, e);
+
+                    }
 
                     else
-                        buttonExit_Click(sender, e);
+                    {
+                        // Reveal all the letters 
+                        richTextBoxDisplay.Text = h.AddSpaces(h.CurrentWord);
+                        this.Refresh();
+
+
+                        // Make boxes enabled/disabled
+                        richTextBoxEntry.Enabled = false;
+
+                        // Ask do they want to play again?
+                        DialogResult dialog = MessageBox.Show("Congratulations, you win! Play again?",
+                            "Game over!", MessageBoxButtons.YesNo);
+
+                        // Click New button
+                        if (dialog == DialogResult.Yes)
+                            button7_Click(sender, e);
+
+                        else
+                            buttonExit_Click(sender, e);
+                    }
                 }
 
                 // If the user already guessed the letter, let them know
@@ -195,7 +223,7 @@ namespace Hangman
 
                 // Carry on otherwise
                 textBoxLives.Text = Convert.ToString(h.Lives);
-                richTextBoxDisplay.Text = h.Word;
+                richTextBoxDisplay.Text = h.AddSpaces(h.Guessword);
                 richTextBoxEntry.Text = ""; // clear entry box
             }
         }

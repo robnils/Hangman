@@ -12,7 +12,7 @@ namespace Hangman
     {
         private Random r;
         private string[] lines;
-        private int position; // the position of the character in the word        
+        private int correctGuesses; // when this number equals length of currentWord, they win
         char guessChar; // Guessed character from user
 
         private bool alreadyGuess; // a flag to test if the letter has been already guessed
@@ -23,19 +23,27 @@ namespace Hangman
         }
 
         // This is the word as the user sees it, containing some letters, some _'s
-        private string word;
-        public string Word
+        private string guessword;
+        public string Guessword
         {
-            get { return word; }
-            set { word = value; }
+            get { return guessword; }
+            set { guessword = value; }
         }
 
         // Game over tag
-        private bool gameOver = false;
+        private bool gameOver;
         public bool GameOver
         {
             get { return gameOver; }
             set { gameOver = value; }
+        }
+
+        // Game win flag
+        private bool gameWin;
+        public bool GameWin
+        {
+            get { return gameWin; }
+            set { gameWin = value; }
         }
 
         // Current word in play
@@ -76,17 +84,65 @@ namespace Hangman
             r = new Random();
             guessedValues = "";
             lives = 5;
-            position = 0;
             alreadyGuess = false;
+            correctGuesses = 0;
+            gameOver = false;
+            gameWin = false;
 
             guessChar = '1'; // Temporary failsafe - should crash if there's a bug somewhere
+        }
+
+        public void Initialise(string cw)
+        {
+            currentWord = cw;
+            guessword = "";
+
+            // Initialise the guessword
+            for (int i = 0; i < currentWord.Length; ++i)
+                guessword += "_";
+        }
+
+        // Function to add spaces to the words for drawing, probably going to be the guessword
+        public string AddSpaces(string text)
+        {
+            string tmp = "";
+
+            for (int i = 0; i < text.Length; ++i)
+            {
+                tmp += guessword[i];
+                tmp += " ";
+            }
+
+            return tmp;
         }
 
         //Load file with the words - words.txt
         public string[] Load()
         {
             string s = Directory.GetCurrentDirectory();
-            s += "\\Words.txt";
+            s += "\\Words_Eng.txt";
+
+            lines = System.IO.File.ReadAllLines(s);
+
+            return lines;
+        }
+
+        // Load with regard to a specific language
+        public string[] Load(string language)
+        {
+            string s = Directory.GetCurrentDirectory();
+
+            switch (language.ToLower())
+            {
+                case "english":
+                    s += "\\Words_Eng.txt";
+                    break;
+                case "swedish":
+                    s += "\\Words_Swe.txt";
+                    break;
+                default:
+                    break;
+            }
 
             lines = System.IO.File.ReadAllLines(s);
 
@@ -103,8 +159,7 @@ namespace Hangman
         // True if they got it correct, false otherwise
         public bool Test(string guessed)
         {
-            guessChar = Convert.ToChar(guessed);
-            position = 0;            
+            guessChar = Convert.ToChar(guessed);         
 
             // Test to make sure user  doesn't enter same value twice            
             int i = 0; // Need two occurences of a letter to be counted as guessed already
@@ -122,19 +177,50 @@ namespace Hangman
                 }                       
             }
             
-            // Add code to test if the key is correct, was entered before, deduct lives
+            // Add code to test if the key is correct, was entered before, deduct lives            
+            char[] guess = new char[guessword.Length];
+            for (int j = 0; j < guessword.Length; ++j)
+            {
+                guess[j] = guessword[j];
+            }
+
+            int k = 0;
+            bool test = false;
             foreach (char c in currentWord)
             {
                 // For each character in the word, is the guessed character equal to any one of them?
                 if (c == guessChar)
                 {
-                    // reveal character
-                    return true;
+                    // Reveal character
+                    guess[k] = c;
+                    test = true; // just used to trigger the next if
+
+                    ++correctGuesses; // increase number of correct guesses
+                    if(correctGuesses == currentWord.Length) // breaks loop if they reach max
+                    {
+                        gameOver = true;
+                        gameWin = true;
+                        return true;
+                    }
                 }
-                ++position;
+                ++k;
             }
 
-            if (lives > 1) // if lives aren't out, deduct a lift
+            // If the user triggered a correct letter, then don't deduct lives,
+            // just turn the array back into the string so it can be used later
+            if (test == true)
+            {                
+                guessword = "";
+                for (int j = 0; j < guess.Length; ++j)
+                {
+                    guessword += guess[j];
+                }
+
+                return true;
+            }
+                
+
+            else if (lives > 1) // if lives aren't out, deduct a lift
             {
                 --lives;
                 return false;
@@ -142,15 +228,17 @@ namespace Hangman
             else
             {
                 gameOver = true;
+                gameWin = false;
                 return false; //end the game
             }
                            
         }
 
         // Uncover the letter
+        // Take in the word
         public void Uncover()
         {
-
+            
         }
         /*
         public void Uncover()

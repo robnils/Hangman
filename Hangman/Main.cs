@@ -19,21 +19,26 @@ using System.Drawing.Drawing2D;
  *  add method to remove played words so they dont appear till the next game
  *  open file dialog to specific the words source file so theyre not hardcoded and users can download new ones
  *  throw exception if cant open save file
+ *  time trial mode, easy medium hard modes
+ *  change fonts
+ *  7 lives
+ *  english and swedish modes
+ *  level scheme - level 1 - 10, 4 letters, 11-20 5 letters, etc
+ *  arranage words by topic? 
 */
 namespace Hangman
 {
     public partial class Main : Form
     {
         private Hangman h;
+        private int difficultyStatus; // 0,1,2 - easy, medium, hard - so we can programmer user preference
+        private int lives;
         private string[] lines;
                 
         public Main()
         {
             InitializeComponent();
-        }
 
-        private void Hangman_Load(object sender, EventArgs e)
-        {
             // Initialisations
             textBoxLives.Enabled = false;
             richTextBoxEntry.Enabled = false;
@@ -41,18 +46,38 @@ namespace Hangman
 
             // Display Text box
             richTextBoxDisplay.SelectAll();
-            richTextBoxDisplay.SelectionAlignment = HorizontalAlignment.Center;            
-            richTextBoxDisplay.Font = new Font("Comic Sans MS", 25.0F,FontStyle.Regular);
-            richTextBoxDisplay.ForeColor = Color.Blue;                        
+            richTextBoxDisplay.SelectionAlignment = HorizontalAlignment.Center;
+            richTextBoxDisplay.Font = new Font("Comic Sans MS", 25.0F, FontStyle.Regular);
+            richTextBoxDisplay.ForeColor = Color.Blue;
 
             // Typing text box
             richTextBoxEntry.SelectAll();
-            richTextBoxEntry.SelectionAlignment = HorizontalAlignment.Center;            
+            richTextBoxEntry.SelectionAlignment = HorizontalAlignment.Center;
             richTextBoxEntry.Font = new Font("Comic Sans MS", 25.0F, FontStyle.Regular);
-            richTextBoxEntry.ForeColor = Color.Red;      
-      
+            richTextBoxEntry.ForeColor = Color.Red;
+
+            // Lives text box
+            richTextBoxLives.SelectAll();
+            richTextBoxLives.SelectionAlignment = HorizontalAlignment.Center;
+            richTextBoxLives.Font = new Font("Comic Sans MS", 55.0F, FontStyle.Regular);
+            richTextBoxLives.ForeColor = Color.Green;
+
+            // Difficulty settings
+            radioButtonEasy.Checked = false;
+            radioButtonMedium.Checked = true;
+            radioButtonHard.Checked = false;
+
             // Hide diagnostic buttons
             textBox1.Visible = false;
+            textBoxLives.Visible = false;
+            textBoxTest.Visible = false;
+            labelLives.Visible = false;
+            buttonWord.Visible = false; 
+        }
+
+        private void Hangman_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -78,8 +103,15 @@ namespace Hangman
             // Easiest way - uses constructed to initialise everything
             h = new Hangman(); 
             lines = h.Load(); // Loads the list of words
+            h.Lives = lives; // Gives lives according to difficulty    
             textBoxLives.Text = Convert.ToString(h.Lives);
+            richTextBoxLives.Text = Convert.ToString(h.Lives);
             textBoxGuessed.Text = h.GuessedValues;
+
+            // Don't let user change diffculty during game
+            radioButtonEasy.Enabled = false;
+            radioButtonMedium.Enabled = false;
+            radioButtonHard.Enabled = false;
 
             string st = "";
             int num = 0;
@@ -93,7 +125,6 @@ namespace Hangman
             }
 
             richTextBoxDisplay.Text = h.Draw(num, 10); // The word the user sees starts off as all _'s
-           // richTextBoxDisplay.Text = h.Word;
             h.Initialise(st);
             richTextBoxEntry.Enabled = true;
 
@@ -165,67 +196,103 @@ namespace Hangman
                 //
                 // If character is guessed correctly (returns true)
                 h.Test(richTextBoxEntry.Text);                    
-
+                
                 // If the game is over, stop
                 if(h.GameOver == true)
                 {
-                    if (h.GameWin == false)
-                    {
-                        // Graphical glitch quick fix
-                        textBoxLives.Text = "0";
+                    
+                    // Graphical glitch quick fix
+                    textBoxLives.Text = "0";
+                    richTextBoxLives.Text = "0";
+                    h.Lives = 0; // for some reason this doesn't work properly in the class
 
-                        // Reveal all the letters 
-                        richTextBoxDisplay.Text = h.AddSpaces(h.CurrentWord);
+                    // Reveal all the letters 
+                    richTextBoxDisplay.Text = h.AddSpaces(h.CurrentWord);
 
-                        // Make boxes enabled/disabled
-                        richTextBoxEntry.Enabled = false;
+                    // Make boxes enabled/disabled
+                    richTextBoxEntry.Enabled = false;
 
-                        // Ask do they want to play again?
-                        DialogResult dialog = MessageBox.Show("Too bad, you lose! Play again?",
-                            "Game over!", MessageBoxButtons.YesNo);
-
-                        // Click New button
-                        if (dialog == DialogResult.Yes)
-                            button7_Click(sender, e);
-
-                        else
-                            buttonExit_Click(sender, e);
-
-                    }
+                    if (h.GameWin == false)                     
+                        MessageBox.Show("Too bad, you lose!",
+                            "Game over!", MessageBoxButtons.OK);                    
 
                     else
-                    {
-                        // Reveal all the letters 
-                        richTextBoxDisplay.Text = h.AddSpaces(h.CurrentWord);
-                        this.Refresh();
-
-
-                        // Make boxes enabled/disabled
-                        richTextBoxEntry.Enabled = false;
-
-                        // Ask do they want to play again?
-                        DialogResult dialog = MessageBox.Show("Congratulations, you win! Play again?",
-                            "Game over!", MessageBoxButtons.YesNo);
-
-                        // Click New button
-                        if (dialog == DialogResult.Yes)
-                            button7_Click(sender, e);
-
-                        else
-                            buttonExit_Click(sender, e);
-                    }
+                        MessageBox.Show("Congratulations, you win!",
+                            "Game over!", MessageBoxButtons.OK);
+                    Clear();
+                    Hangman_Load(sender, e);
                 }
 
-                // If the user already guessed the letter, let them know
-                if (h.AlreadyGuess)
-                    textBoxAlreadyGuessed.Text = "You already guessed " + richTextBoxEntry.Text
-                        + "!";
+                if (h.Lives != 0)
+                {
+                    // If the user already guessed the letter, let them know
+                    if (h.AlreadyGuess)
+                        textBoxAlreadyGuessed.Text = "You already guessed " + richTextBoxEntry.Text
+                            + "!";
 
-                // Carry on otherwise
-                textBoxLives.Text = Convert.ToString(h.Lives);
-                richTextBoxDisplay.Text = h.AddSpaces(h.Guessword);
-                richTextBoxEntry.Text = ""; // clear entry box
+                    // Carry on otherwise
+                    textBoxLives.Text = Convert.ToString(h.Lives);
+                    richTextBoxLives.Text = Convert.ToString(h.Lives);
+                    richTextBoxDisplay.Text = h.AddSpaces(h.Guessword);
+                    richTextBoxEntry.Text = ""; // clear entry box
+                }
             }
+        }
+
+        private void radioButtonEasy_CheckedChanged(object sender, EventArgs e)
+        {
+            lives = 9;
+            difficultyStatus = 0;
+        }
+
+        private void radioButtonMedium_CheckedChanged(object sender, EventArgs e)
+        {
+            lives = 6;
+            difficultyStatus = 1;
+        }
+
+        private void radioButtonHard_CheckedChanged(object sender, EventArgs e)
+        {
+            lives = 4;
+            difficultyStatus = 2;
+        }
+
+        // Clears and resets everything
+        private void Clear()
+        {
+            richTextBoxLives.Text = " ";
+            richTextBoxDisplay.Text = " ";
+            richTextBoxEntry.Text = " ";
+            textBoxGuessed.Text = " ";
+
+            // Rename "New Game" button
+            buttonNew.Text = "Play again?";
+
+            // Difficulty settings
+            radioButtonEasy.Enabled = true;
+            radioButtonMedium.Enabled = true;
+            radioButtonHard.Enabled = true;
+            switch(difficultyStatus)
+            {
+                case 0:
+                    // Difficulty settings
+                    radioButtonEasy.Checked = true;
+                    radioButtonMedium.Checked = false;
+                    radioButtonHard.Checked = false;
+                    break;
+                case 1:
+                    // Difficulty settings
+                    radioButtonEasy.Checked = false;
+                    radioButtonMedium.Checked = true;
+                    radioButtonHard.Checked = false;
+                    break;
+                case 2:
+                    // Difficulty settings
+                    radioButtonEasy.Checked = false;
+                    radioButtonMedium.Checked = false;
+                    radioButtonHard.Checked = true;
+                    break;
+            }            
         }
     }
 }

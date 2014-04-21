@@ -69,6 +69,10 @@
             this.labelLives = new System.Windows.Forms.Label();
             this.textBoxAlreadyGuessed = new System.Windows.Forms.TextBox();
             this.richTextBoxLives = new System.Windows.Forms.RichTextBox();
+            this.buttonWord = new System.Windows.Forms.Button();
+            this.radioButtonEasy = new System.Windows.Forms.RadioButton();
+            this.radioButtonMedium = new System.Windows.Forms.RadioButton();
+            this.radioButtonHard = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -79,6 +83,7 @@
             this.buttonQ.TabIndex = 0;
             this.buttonQ.Text = "Q";
             this.buttonQ.UseVisualStyleBackColor = true;
+            this.buttonQ.Visible = false;
             // 
             // button2
             // 
@@ -88,6 +93,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "W";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             // 
             // button3
             // 
@@ -97,6 +103,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "E";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             // 
             // button4
             // 
@@ -106,6 +113,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Y";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
@@ -116,6 +124,7 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "T";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
             // 
             // button6
             // 
@@ -125,6 +134,7 @@
             this.button6.TabIndex = 3;
             this.button6.Text = "R";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             // 
             // button9
             // 
@@ -134,6 +144,7 @@
             this.button9.TabIndex = 9;
             this.button9.Text = "P";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Visible = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button10
@@ -144,6 +155,7 @@
             this.button10.TabIndex = 8;
             this.button10.Text = "O";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Visible = false;
             // 
             // button11
             // 
@@ -153,6 +165,7 @@
             this.button11.TabIndex = 7;
             this.button11.Text = "I";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Visible = false;
             // 
             // button12
             // 
@@ -162,6 +175,7 @@
             this.button12.TabIndex = 6;
             this.button12.Text = "U";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Visible = false;
             // 
             // button13
             // 
@@ -171,6 +185,7 @@
             this.button13.TabIndex = 17;
             this.button13.Text = "H";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Visible = false;
             // 
             // button14
             // 
@@ -180,6 +195,7 @@
             this.button14.TabIndex = 16;
             this.button14.Text = "G";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Visible = false;
             // 
             // button15
             // 
@@ -189,6 +205,7 @@
             this.button15.TabIndex = 15;
             this.button15.Text = "F";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Visible = false;
             // 
             // button16
             // 
@@ -198,6 +215,7 @@
             this.button16.TabIndex = 14;
             this.button16.Text = "D";
             this.button16.UseVisualStyleBackColor = true;
+            this.button16.Visible = false;
             // 
             // button17
             // 
@@ -207,6 +225,7 @@
             this.button17.TabIndex = 13;
             this.button17.Text = "S";
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Visible = false;
             // 
             // button18
             // 
@@ -216,6 +235,7 @@
             this.button18.TabIndex = 12;
             this.button18.Text = "A";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Visible = false;
             // 
             // button22
             // 
@@ -225,6 +245,7 @@
             this.button22.TabIndex = 20;
             this.button22.Text = "L";
             this.button22.UseVisualStyleBackColor = true;
+            this.button22.Visible = false;
             // 
             // button23
             // 
@@ -234,6 +255,7 @@
             this.button23.TabIndex = 19;
             this.button23.Text = "K";
             this.button23.UseVisualStyleBackColor = true;
+            this.button23.Visible = false;
             // 
             // button24
             // 
@@ -243,6 +265,7 @@
             this.button24.TabIndex = 18;
             this.button24.Text = "J";
             this.button24.UseVisualStyleBackColor = true;
+            this.button24.Visible = false;
             // 
             // button19
             // 
@@ -252,6 +275,7 @@
             this.button19.TabIndex = 28;
             this.button19.Text = "N";
             this.button19.UseVisualStyleBackColor = true;
+            this.button19.Visible = false;
             // 
             // button25
             // 
@@ -261,6 +285,7 @@
             this.button25.TabIndex = 27;
             this.button25.Text = "B";
             this.button25.UseVisualStyleBackColor = true;
+            this.button25.Visible = false;
             this.button25.Click += new System.EventHandler(this.button25_Click);
             // 
             // button26
@@ -271,6 +296,7 @@
             this.button26.TabIndex = 26;
             this.button26.Text = "V";
             this.button26.UseVisualStyleBackColor = true;
+            this.button26.Visible = false;
             // 
             // button27
             // 
@@ -280,6 +306,7 @@
             this.button27.TabIndex = 25;
             this.button27.Text = "C";
             this.button27.UseVisualStyleBackColor = true;
+            this.button27.Visible = false;
             // 
             // button28
             // 
@@ -289,6 +316,7 @@
             this.button28.TabIndex = 24;
             this.button28.Text = "X";
             this.button28.UseVisualStyleBackColor = true;
+            this.button28.Visible = false;
             // 
             // button29
             // 
@@ -298,6 +326,7 @@
             this.button29.TabIndex = 23;
             this.button29.Text = "Z";
             this.button29.UseVisualStyleBackColor = true;
+            this.button29.Visible = false;
             // 
             // button34
             // 
@@ -307,6 +336,7 @@
             this.button34.TabIndex = 30;
             this.button34.Text = "Space";
             this.button34.UseVisualStyleBackColor = true;
+            this.button34.Visible = false;
             // 
             // button35
             // 
@@ -316,21 +346,22 @@
             this.button35.TabIndex = 29;
             this.button35.Text = "M";
             this.button35.UseVisualStyleBackColor = true;
+            this.button35.Visible = false;
             // 
             // buttonNew
             // 
             this.buttonNew.Location = new System.Drawing.Point(12, 12);
             this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(55, 38);
+            this.buttonNew.Size = new System.Drawing.Size(70, 38);
             this.buttonNew.TabIndex = 31;
-            this.buttonNew.Text = "New";
+            this.buttonNew.Text = "New Game";
             this.buttonNew.UseVisualStyleBackColor = true;
             this.buttonNew.Click += new System.EventHandler(this.button7_Click);
             this.buttonNew.Paint += new System.Windows.Forms.PaintEventHandler(this.Hangman_Paint);
             // 
             // textBoxTest
             // 
-            this.textBoxTest.Location = new System.Drawing.Point(97, 18);
+            this.textBoxTest.Location = new System.Drawing.Point(527, 22);
             this.textBoxTest.Name = "textBoxTest";
             this.textBoxTest.Size = new System.Drawing.Size(51, 20);
             this.textBoxTest.TabIndex = 33;
@@ -344,6 +375,7 @@
             this.button1.TabIndex = 34;
             this.button1.Text = "Å";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             // 
             // button7
             // 
@@ -353,6 +385,7 @@
             this.button7.TabIndex = 35;
             this.button7.Text = "Ö";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
             // 
             // button8
             // 
@@ -362,6 +395,7 @@
             this.button8.TabIndex = 36;
             this.button8.Text = "Ä";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Visible = false;
             // 
             // richTextBoxDisplay
             // 
@@ -440,11 +474,61 @@
             this.richTextBoxLives.TabIndex = 46;
             this.richTextBoxLives.Text = "";
             // 
+            // buttonWord
+            // 
+            this.buttonWord.Location = new System.Drawing.Point(91, 12);
+            this.buttonWord.Name = "buttonWord";
+            this.buttonWord.Size = new System.Drawing.Size(124, 38);
+            this.buttonWord.TabIndex = 47;
+            this.buttonWord.Text = "Add Custom Wordlist...";
+            this.buttonWord.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonEasy
+            // 
+            this.radioButtonEasy.AutoSize = true;
+            this.radioButtonEasy.Location = new System.Drawing.Point(554, 193);
+            this.radioButtonEasy.Name = "radioButtonEasy";
+            this.radioButtonEasy.Size = new System.Drawing.Size(87, 17);
+            this.radioButtonEasy.TabIndex = 48;
+            this.radioButtonEasy.TabStop = true;
+            this.radioButtonEasy.Text = "Easy (9 lives)";
+            this.radioButtonEasy.UseVisualStyleBackColor = true;
+            this.radioButtonEasy.CheckedChanged += new System.EventHandler(this.radioButtonEasy_CheckedChanged);
+            // 
+            // radioButtonMedium
+            // 
+            this.radioButtonMedium.AutoSize = true;
+            this.radioButtonMedium.Location = new System.Drawing.Point(554, 216);
+            this.radioButtonMedium.Name = "radioButtonMedium";
+            this.radioButtonMedium.Size = new System.Drawing.Size(101, 17);
+            this.radioButtonMedium.TabIndex = 49;
+            this.radioButtonMedium.TabStop = true;
+            this.radioButtonMedium.Text = "Medium (6 lives)";
+            this.radioButtonMedium.UseVisualStyleBackColor = true;
+            this.radioButtonMedium.CheckedChanged += new System.EventHandler(this.radioButtonMedium_CheckedChanged);
+            // 
+            // radioButtonHard
+            // 
+            this.radioButtonHard.AutoSize = true;
+            this.radioButtonHard.Location = new System.Drawing.Point(554, 239);
+            this.radioButtonHard.Name = "radioButtonHard";
+            this.radioButtonHard.Size = new System.Drawing.Size(87, 17);
+            this.radioButtonHard.TabIndex = 50;
+            this.radioButtonHard.TabStop = true;
+            this.radioButtonHard.Text = "Hard (4 lives)";
+            this.radioButtonHard.UseVisualStyleBackColor = true;
+            this.radioButtonHard.CheckedChanged += new System.EventHandler(this.radioButtonHard_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(677, 394);
+            this.Controls.Add(this.radioButtonHard);
+            this.Controls.Add(this.radioButtonMedium);
+            this.Controls.Add(this.radioButtonEasy);
+            this.Controls.Add(this.buttonWord);
             this.Controls.Add(this.richTextBoxLives);
             this.Controls.Add(this.textBoxAlreadyGuessed);
             this.Controls.Add(this.labelLives);
@@ -486,9 +570,10 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonQ);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Main";
-            this.Text = "-";
+            this.Text = "HangMania v.0,1";
             this.Load += new System.EventHandler(this.Hangman_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Hangman_Paint);
             this.ResumeLayout(false);
@@ -539,6 +624,10 @@
         private System.Windows.Forms.Label labelLives;
         private System.Windows.Forms.TextBox textBoxAlreadyGuessed;
         private System.Windows.Forms.RichTextBox richTextBoxLives;
+        private System.Windows.Forms.Button buttonWord;
+        private System.Windows.Forms.RadioButton radioButtonEasy;
+        private System.Windows.Forms.RadioButton radioButtonMedium;
+        private System.Windows.Forms.RadioButton radioButtonHard;
     }
 }
 

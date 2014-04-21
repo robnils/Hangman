@@ -34,10 +34,10 @@ namespace Hangman
         private void Hangman_Load(object sender, EventArgs e)
         {
             // Initialisations
-            h = new Hangman();
-            lines = h.Load();
+            //h = new Hangman();
+            //lines = h.Load();
             textBoxLives.Enabled = false;
-            textBoxLives.Text = Convert.ToString(h.Lives);
+            //textBoxLives.Text = Convert.ToString(h.Lives);
             richTextBoxEntry.Enabled = false;
             textBoxGuessed.Enabled = false;
 
@@ -45,14 +45,13 @@ namespace Hangman
             richTextBoxDisplay.SelectAll();
             richTextBoxDisplay.SelectionAlignment = HorizontalAlignment.Center;            
             richTextBoxDisplay.Font = new Font("Comic Sans MS", 25.0F,FontStyle.Regular);
-            richTextBoxDisplay.ForeColor = Color.Blue;
-                        
+            richTextBoxDisplay.ForeColor = Color.Blue;                        
 
             // Typing text box
             richTextBoxEntry.SelectAll();
             richTextBoxEntry.SelectionAlignment = HorizontalAlignment.Center;            
             richTextBoxEntry.Font = new Font("Comic Sans MS", 25.0F, FontStyle.Regular);
-            richTextBoxEntry.ForeColor = Color.Red;
+            richTextBoxEntry.ForeColor = Color.Red;            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -74,6 +73,13 @@ namespace Hangman
         // Starts the game
         private void button7_Click(object sender, EventArgs e)
         {
+            // Create a new instance for each game 
+            // Easiest way - uses constructed to initialise everything
+            h = new Hangman(); 
+            lines = h.Load();
+            textBoxLives.Text = Convert.ToString(h.Lives);
+            textBoxGuessed.Text = h.GuessedValues;
+
             string st = "";
             int num = 0;
             st = h.ReturnRnd(); // returns a random word from the list
@@ -85,10 +91,12 @@ namespace Hangman
                 ++num;
             }
  
-            //richTextBoxDisplay.Text = h.Draw(num, 10);
             h.Word = h.Draw(num, 10); // The word the user sees starts off as all _'s
             richTextBoxDisplay.Text = h.Word;
             richTextBoxEntry.Enabled = true;
+
+            // Gives focus of form onto the textbox
+            this.ActiveControl = richTextBoxEntry;
         }
               
         private void Hangman_Paint(object sender, PaintEventArgs e)
@@ -145,6 +153,7 @@ namespace Hangman
             // One user hits enter, accept the letter and clear the textbox
             if (e.KeyCode == Keys.Enter)
             {
+                textBoxAlreadyGuessed.Text = ""; // Reset the notification
                 h.GuessedValues += richTextBoxEntry.Text; // add entered text to guessed values
                 h.GuessedValues += ","; // nicer formatting
                 textBoxGuessed.Text = h.GuessedValues; // display it
@@ -159,10 +168,30 @@ namespace Hangman
                 // If the game is over, stop
                 else if(h.GameOver == true)
                 {
+                    // Graphical glitch quick fix
+                    textBoxLives.Text = "0";
+
                     // Reveal all the letters 
+
                     // Make boxes enabled/disabled
+                    richTextBoxEntry.Enabled = false;
+
                     // Ask do they want to play again?
+                    DialogResult dialog = MessageBox.Show("Game over! Play again?",
+                        "Game over!",MessageBoxButtons.YesNo);
+
+                    // Click New button
+                    if (dialog == DialogResult.Yes)
+                        button7_Click(sender, e);
+
+                    else
+                        buttonExit_Click(sender, e);
                 }
+
+                // If the user already guessed the letter, let them know
+                if (h.AlreadyGuess)
+                    textBoxAlreadyGuessed.Text = "You already guessed " + richTextBoxEntry.Text
+                        + "!";
 
                 // Carry on otherwise
                 textBoxLives.Text = Convert.ToString(h.Lives);

@@ -12,9 +12,15 @@ namespace Hangman
     {
         private Random r;
         private string[] lines;
-        private int position; // the position of the character in the word
-        private bool alreadyGuess; // a flag to test if the letter has been already guessed
+        private int position; // the position of the character in the word        
         char guessChar; // Guessed character from user
+
+        private bool alreadyGuess; // a flag to test if the letter has been already guessed
+        public bool AlreadyGuess
+        {
+            get { return alreadyGuess; }
+            set { alreadyGuess = value; }
+        }
 
         // This is the word as the user sees it, containing some letters, some _'s
         private string word;
@@ -71,6 +77,7 @@ namespace Hangman
             guessedValues = "";
             lives = 5;
             position = 0;
+            alreadyGuess = false;
 
             guessChar = '1'; // Temporary failsafe - should crash if there's a bug somewhere
         }
@@ -97,16 +104,22 @@ namespace Hangman
         public bool Test(string guessed)
         {
             guessChar = Convert.ToChar(guessed);
-            position = 0;
+            position = 0;            
 
-            // Test to make sure user  doesn't enter same value twice
+            // Test to make sure user  doesn't enter same value twice            
+            int i = 0; // Need two occurences of a letter to be counted as guessed already
+            alreadyGuess = false; // Assume false first
             foreach(char c in guessedValues)
             {
                 if (c == guessChar)
                 {
-                    alreadyGuess = true;
-                    return false;
-                }
+                    ++i;
+                    if(i == 2)
+                    {
+                        alreadyGuess = true;
+                        return false;
+                    }
+                }                       
             }
             
             // Add code to test if the key is correct, was entered before, deduct lives
@@ -121,7 +134,7 @@ namespace Hangman
                 ++position;
             }
 
-            if (lives != 0) // if lives aren't out, deduct a lift
+            if (lives > 1) // if lives aren't out, deduct a lift
             {
                 --lives;
                 return false;
@@ -137,21 +150,49 @@ namespace Hangman
         // Uncover the letter
         public void Uncover()
         {
+
+        }
+        /*
+        public void Uncover()
+        {
             // movie
             // _o___
             //
             /* currentWord - full
              * word - user seen
              * position
-             * */
+             
+            string tmp = "";
             for(int i = 0; i < word.Length;++i)
             {
-                if(i == position)
+                // Now reveal the one they chose a specific turn
+                if (i == position)
                 {
                     //word[i] = guessChar;
+                    tmp += guessChar;
+                    tmp += " ";
+                }   
+
+                // If the word is uncovered, keep it that way
+                else if ((word[i] == '_') || (word[i] == ' '))
+                {
+                    if(word[i] == '_')
+                    {
+                        tmp += "_";
+                        tmp += " ";
+                    }
                 }
+
+                // Otherwise, reveal it by comparing it to the known word
+                // This is for characters previously revealed
+                else
+                {
+                    tmp += currentWord[i];
+                    tmp += " ";
+                }                             
             }
-        }
+            word = tmp;
+        }*/
 
         // Draws num values of _ into display, up to a max
         public string Draw(string num, int max)
@@ -171,7 +212,6 @@ namespace Hangman
                     {
                         text += "_";
                         text += " ";
-
                         ++j;
                     }
 
@@ -216,7 +256,6 @@ namespace Hangman
                 {
                     text += "_";
                     text += " ";
-
                     ++j;
                 }
 

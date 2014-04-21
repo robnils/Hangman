@@ -67,6 +67,7 @@
             this.textBoxGuessed = new System.Windows.Forms.TextBox();
             this.textBoxLives = new System.Windows.Forms.TextBox();
             this.labelLives = new System.Windows.Forms.Label();
+            this.textBoxAlreadyGuessed = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -423,11 +424,19 @@
             this.labelLives.TabIndex = 44;
             this.labelLives.Text = "Lives:";
             // 
+            // textBoxAlreadyGuessed
+            // 
+            this.textBoxAlreadyGuessed.Location = new System.Drawing.Point(22, 208);
+            this.textBoxAlreadyGuessed.Name = "textBoxAlreadyGuessed";
+            this.textBoxAlreadyGuessed.Size = new System.Drawing.Size(146, 20);
+            this.textBoxAlreadyGuessed.TabIndex = 45;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 394);
+            this.Controls.Add(this.textBoxAlreadyGuessed);
             this.Controls.Add(this.labelLives);
             this.Controls.Add(this.textBoxLives);
             this.Controls.Add(this.textBoxGuessed);
@@ -518,6 +527,7 @@
         private System.Windows.Forms.TextBox textBoxGuessed;
         private System.Windows.Forms.TextBox textBoxLives;
         private System.Windows.Forms.Label labelLives;
+        private System.Windows.Forms.TextBox textBoxAlreadyGuessed;
     }
 }
 

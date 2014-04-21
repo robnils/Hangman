@@ -10,12 +10,35 @@ namespace Hangman
 {
     class Hangman
     {
-        private Random r = new Random();
+        private Random r;
         private string[] lines;
+
+        // Keeps track of the values the user guessed
+        private string guessedValues;
+        public string GuessedValues
+        {
+            get { return guessedValues; }
+            set { guessedValues = value; }
+        }
+
+        // The number of lives the user has
+        private int lives;
+        public int Lives
+        {
+            get { return lives; }
+            set 
+            {
+                // Reasonable bounds on the # of lives
+                if ((value >= 0) && (value <= 10))
+                    lives = value;
+            }
+        }
 
         public Hangman()
         {
-
+            r = new Random();
+            guessedValues = "";
+            lives = 5; 
         }
 
         //Load file with the words - words.txt
@@ -36,7 +59,7 @@ namespace Hangman
         }
 
         // Draws num values of _ into display, up to a max
-        public string Draw(string num, int max, string display)
+        public string Draw(string num, int max)
         {
             int i = 0;
             int j = 0;
@@ -86,15 +109,13 @@ namespace Hangman
 
         // Draws num values of _ into display, up to a max
         // Overloaded method to use num as an int instead of string
-        public string Draw(int num, int max, string display)
+        public string Draw(int num, int max)
         {
-            int i = 0;
             int j = 0;
             string text = "";
-
-            
+                        
             // If less than max number, draw up to that number
-            if (i <= max)
+            if (num <= max)
             {
                 while (j < num)
                 {

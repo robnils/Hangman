@@ -64,6 +64,9 @@
             this.richTextBoxEntry = new System.Windows.Forms.RichTextBox();
             this.buttonExit = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxGuessed = new System.Windows.Forms.TextBox();
+            this.textBoxLives = new System.Windows.Forms.TextBox();
+            this.labelLives = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -372,10 +375,13 @@
             // 
             this.richTextBoxEntry.Location = new System.Drawing.Point(271, 176);
             this.richTextBoxEntry.Name = "richTextBoxEntry";
+            this.richTextBoxEntry.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.richTextBoxEntry.Size = new System.Drawing.Size(144, 53);
             this.richTextBoxEntry.TabIndex = 39;
             this.richTextBoxEntry.Text = "";
             this.richTextBoxEntry.TextChanged += new System.EventHandler(this.richTextBoxEntry_TextChanged);
+            this.richTextBoxEntry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBoxEntry_KeyDown);
+            this.richTextBoxEntry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxEntry_KeyPress);
             // 
             // buttonExit
             // 
@@ -394,11 +400,37 @@
             this.textBox1.Size = new System.Drawing.Size(146, 20);
             this.textBox1.TabIndex = 41;
             // 
+            // textBoxGuessed
+            // 
+            this.textBoxGuessed.Location = new System.Drawing.Point(471, 167);
+            this.textBoxGuessed.Name = "textBoxGuessed";
+            this.textBoxGuessed.Size = new System.Drawing.Size(182, 20);
+            this.textBoxGuessed.TabIndex = 42;
+            // 
+            // textBoxLives
+            // 
+            this.textBoxLives.Location = new System.Drawing.Point(604, 81);
+            this.textBoxLives.Name = "textBoxLives";
+            this.textBoxLives.Size = new System.Drawing.Size(35, 20);
+            this.textBoxLives.TabIndex = 43;
+            // 
+            // labelLives
+            // 
+            this.labelLives.AutoSize = true;
+            this.labelLives.Location = new System.Drawing.Point(563, 84);
+            this.labelLives.Name = "labelLives";
+            this.labelLives.Size = new System.Drawing.Size(35, 13);
+            this.labelLives.TabIndex = 44;
+            this.labelLives.Text = "Lives:";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 394);
+            this.Controls.Add(this.labelLives);
+            this.Controls.Add(this.textBoxLives);
+            this.Controls.Add(this.textBoxGuessed);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.richTextBoxEntry);
@@ -483,6 +515,9 @@
         private System.Windows.Forms.RichTextBox richTextBoxEntry;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxGuessed;
+        private System.Windows.Forms.TextBox textBoxLives;
+        private System.Windows.Forms.Label labelLives;
     }
 }
 

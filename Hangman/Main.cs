@@ -15,16 +15,12 @@ using System.Drawing.Drawing2D;
 /* Use an array to store the names of the buttons - like button1.Text = names[1] - easier to switch languages
  * also makes the switch case MUCH easier and not hardcoded
  * 
- * 
+ * // add lives and guesed values to hangman.cs
 */
 namespace Hangman
 {
     public partial class Main : Form
     {
-        // Drawing data for the dashed lines 
-        //private int initx = 50;
-        //private int inity = 150;
-        //private int length = 120;
         private Hangman h;
         private string[] lines;
                 
@@ -35,8 +31,13 @@ namespace Hangman
 
         private void Hangman_Load(object sender, EventArgs e)
         {
+            // Initialisations
             h = new Hangman();
             lines = h.Load();
+            textBoxLives.Enabled = false;
+            textBoxLives.Text = Convert.ToString(h.Lives);
+            richTextBoxEntry.Enabled = false;
+            textBoxGuessed.Enabled = false;
 
             // Display Text box
             richTextBoxDisplay.SelectAll();
@@ -51,12 +52,7 @@ namespace Hangman
             richTextBoxEntry.SelectionAlignment = HorizontalAlignment.Center;            
             richTextBoxEntry.Font = new Font("Comic Sans MS", 25.0F, FontStyle.Regular);
             richTextBoxEntry.ForeColor = Color.Red;
-            richTextBoxEntry.Text = "X";   
-        
-            
-
-            //textBox1.Text = lines[1];
-
+            richTextBoxEntry.Text = "X";
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -75,6 +71,7 @@ namespace Hangman
         }
 
         // New Button
+        // Starts the game
         private void button7_Click(object sender, EventArgs e)
         {
             string st = "";
@@ -86,9 +83,9 @@ namespace Hangman
             {
                 ++num;
             }
-
-            //richTextBoxDisplay.Text = h.Draw(num, 10, richTextBoxDisplay.Text); 
-            richTextBoxDisplay.Text = h.Draw(num, 10, richTextBoxDisplay.Text); 
+ 
+            richTextBoxDisplay.Text = h.Draw(num, 10);
+            richTextBoxEntry.Enabled = true;
         }
 
       
@@ -125,7 +122,7 @@ namespace Hangman
         {
             Hangman h = new Hangman();
 
-            richTextBoxDisplay.Text=h.Draw(textBoxTest.Text, 10, richTextBoxDisplay.Text);           
+            richTextBoxDisplay.Text=h.Draw(textBoxTest.Text, 10);           
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -138,9 +135,36 @@ namespace Hangman
             // Make all entered text upper - looks neater
             String s = "";
             s=richTextBoxEntry.Text;
-            richTextBoxEntry.Text = s.ToUpper(); 
+            richTextBoxEntry.Text = s.ToUpper();
 
+            // Only accept one letter in the textbox
+            if (s.Length > 1)
+            {
+                s = Convert.ToString(s[0]);
+                richTextBoxEntry.Text = s.ToUpper();
+            }            
+        }
+
+        private void richTextBoxEntry_KeyPress(object sender, KeyPressEventArgs e)
+        {
             
+        }
+
+        private void richTextBoxEntry_KeyDown(object sender, KeyEventArgs e)
+        {
+            // One user hits enter, accept the letter and clear the textbox
+            if (e.KeyCode == Keys.Enter)
+            {
+                //guessedValues += richTextBoxEntry.Text; // add entered text to guessed values
+                //guessedValues += ","; // nicer formatting
+                //textBoxGuessed.Text = guessedValues; // display it
+
+                h.GuessedValues += richTextBoxEntry.Text; // add entered text to guessed values
+                h.GuessedValues += ","; // nicer formatting
+                textBoxGuessed.Text = h.GuessedValues; // display it
+
+                richTextBoxEntry.Text = ""; // clear entry box
+            }
         }
     }
 }

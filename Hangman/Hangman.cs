@@ -84,5 +84,50 @@ namespace Hangman
                 return "_";
         }
 
+        // Draws num values of _ into display, up to a max
+        // Overloaded method to use num as an int instead of string
+        public string Draw(int num, int max, string display)
+        {
+            int i = 0;
+            int j = 0;
+            string text = "";
+
+            
+            // If less than max number, draw up to that number
+            if (i <= max)
+            {
+                while (j < num)
+                {
+                    text += "_";
+                    text += " ";
+
+                    ++j;
+                }
+
+                // So we don't display 0 numbers of _
+                if (num > 0)
+                    //display = text;
+                    return text;
+                else
+                    //display = "_"; // Just write one _ if all else fails
+                    return "_";
+            }
+
+            // Otherwise draw max number
+            else
+            {
+                text = "";
+                while (j < max)
+                {
+                    text += "_";
+                    text += " ";
+
+                    ++j;
+                }
+                return text;
+            }
+          
+        }
+
     }
 }

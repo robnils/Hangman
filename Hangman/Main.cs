@@ -77,7 +77,18 @@ namespace Hangman
         // New Button
         private void button7_Click(object sender, EventArgs e)
         {
-            textBox1.Text = h.ReturnRnd();
+            string st = "";
+            int num = 0;
+            st = h.ReturnRnd();
+            textBox1.Text = st;
+
+            foreach (char c in st)
+            {
+                ++num;
+            }
+
+            //richTextBoxDisplay.Text = h.Draw(num, 10, richTextBoxDisplay.Text); 
+            richTextBoxDisplay.Text = h.Draw(num, 10, richTextBoxDisplay.Text); 
         }
 
       

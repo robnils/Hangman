@@ -62,6 +62,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.richTextBoxDisplay = new System.Windows.Forms.RichTextBox();
             this.richTextBoxEntry = new System.Windows.Forms.RichTextBox();
+            this.buttonExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -374,11 +375,22 @@
             this.richTextBoxEntry.TabIndex = 39;
             this.richTextBoxEntry.Text = "";
             // 
+            // buttonExit
+            // 
+            this.buttonExit.Location = new System.Drawing.Point(584, 12);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(55, 38);
+            this.buttonExit.TabIndex = 40;
+            this.buttonExit.Text = "Exit";
+            this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
             // Hangman
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 394);
+            this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.richTextBoxEntry);
             this.Controls.Add(this.richTextBoxDisplay);
             this.Controls.Add(this.button8);
@@ -459,6 +471,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.RichTextBox richTextBoxDisplay;
         private System.Windows.Forms.RichTextBox richTextBoxEntry;
+        private System.Windows.Forms.Button buttonExit;
     }
 }
 

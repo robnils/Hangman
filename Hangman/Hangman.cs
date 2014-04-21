@@ -100,24 +100,35 @@ namespace Hangman
             //textBoxEntry.Text = "";
         }
 
-        // BROKEN CURRENTLY
+        // Draws the dashed lines based on the entered number
         private void textBoxTest_TextChanged(object sender, EventArgs e)
         {
             int i = 0;
             int j = 0;
             string text = "";
 
-            i = Convert.ToInt32(textBoxTest.Text);
-
-            while(j < i)
+            // The Convert.ToIn32() method will break if you enter "" - this test prevents that
+            if (textBoxTest.Text != "")
             {
-                text += "_";
-                text += " ";
+                i = Convert.ToInt32(textBoxTest.Text);
 
-                ++j;
+                while (j < i)
+                {
+                    text += "_";
+                    text += " ";
+
+                    ++j;
+                }
+
+                // So we don't display 0 numbers of _
+                if (i > 0)
+                    richTextBoxDisplay.Text = text;
             }
-            
-            textBoxTest.Text = text;
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

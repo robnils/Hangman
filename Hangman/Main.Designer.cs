@@ -1,6 +1,6 @@
 ﻿namespace Hangman
 {
-    partial class Hangman
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.

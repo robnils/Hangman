@@ -11,8 +11,10 @@ namespace Hangman
     class Hangman
     {
         private Random r;
-        private string[] lines;
+        private string[] lines; // Imported wordlist
+        private string[] occurred; // list of words that came up before in the Random()
         private int correctGuesses; // when this number equals length of currentWord, they win
+        private bool firstuse = true;
         char guessChar; // Guessed character from user
 
         private bool alreadyGuess; // a flag to test if the letter has been already guessed
@@ -128,17 +130,20 @@ namespace Hangman
         }
 
         // Load with regard to a specific language
-        public string[] Load(string language)
+        public string[] Load(string wordlist)
         {
             string s = Directory.GetCurrentDirectory();
 
-            switch (language.ToLower())
+            switch (wordlist.ToLower())
             {
-                case "english":
-                    s += "\\Words_Eng.txt";
+                case "random":
+                    s += "\\Words_Random.txt";
                     break;
                 case "swedish":
                     s += "\\Words_Swe.txt";
+                    break;
+                case "countries":
+                    s += "\\Words_Countries.txt";
                     break;
                 default:
                     break;
@@ -152,7 +157,34 @@ namespace Hangman
         // Returns a random word from the list of words
         public string ReturnRnd()
         {
-            return (lines[r.Next(0, lines.Length)]).ToUpper();
+            string rndwrd = "";
+            
+
+            // if time running, there's no chance of occuring the same word again, so just
+            // use whatever we get
+            if (firstuse)
+            {
+                rndwrd = (lines[r.Next(0, lines.Length)]).ToUpper();
+                occurred[0] = rndwrd;
+                firstuse = false;
+
+                return rndwrd;
+            }
+
+            
+            int i = 0;
+            while(i<occurred.Length)
+            {
+                if(rndwrd[i].Equals(occurred[i])) // if it's occurred before - probably won't work fully
+                {
+                    rndwrd = (lines[r.Next(0, lines.Length)]).ToUpper();
+                    occurred[i + 1] = rndwrd; // might flag an error
+                }
+
+                ++i; 
+            }
+
+            return rndwrd;
         }
 
         // Test the entered character
@@ -233,55 +265,7 @@ namespace Hangman
             }
                            
         }
-
-        // Uncover the letter
-        // Take in the word
-        public void Uncover()
-        {
-            
-        }
-        /*
-        public void Uncover()
-        {
-            // movie
-            // _o___
-            //
-            /* currentWord - full
-             * word - user seen
-             * position
-             
-            string tmp = "";
-            for(int i = 0; i < word.Length;++i)
-            {
-                // Now reveal the one they chose a specific turn
-                if (i == position)
-                {
-                    //word[i] = guessChar;
-                    tmp += guessChar;
-                    tmp += " ";
-                }   
-
-                // If the word is uncovered, keep it that way
-                else if ((word[i] == '_') || (word[i] == ' '))
-                {
-                    if(word[i] == '_')
-                    {
-                        tmp += "_";
-                        tmp += " ";
-                    }
-                }
-
-                // Otherwise, reveal it by comparing it to the known word
-                // This is for characters previously revealed
-                else
-                {
-                    tmp += currentWord[i];
-                    tmp += " ";
-                }                             
-            }
-            word = tmp;
-        }*/
-
+                      
         // Draws num values of _ into display, up to a max
         public string Draw(string num, int max)
         {

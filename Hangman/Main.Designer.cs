@@ -56,7 +56,6 @@
             this.button34 = new System.Windows.Forms.Button();
             this.button35 = new System.Windows.Forms.Button();
             this.buttonNew = new System.Windows.Forms.Button();
-            this.textBoxTest = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -74,6 +73,9 @@
             this.radioButtonMedium = new System.Windows.Forms.RadioButton();
             this.radioButtonHard = new System.Windows.Forms.RadioButton();
             this.richTextBoxGuessed = new System.Windows.Forms.RichTextBox();
+            this.comboBoxWordlist = new System.Windows.Forms.ComboBox();
+            this.radioButtonRandom = new System.Windows.Forms.RadioButton();
+            this.radioButtonCountries = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -360,14 +362,6 @@
             this.buttonNew.Click += new System.EventHandler(this.button7_Click);
             this.buttonNew.Paint += new System.Windows.Forms.PaintEventHandler(this.Hangman_Paint);
             // 
-            // textBoxTest
-            // 
-            this.textBoxTest.Location = new System.Drawing.Point(527, 22);
-            this.textBoxTest.Name = "textBoxTest";
-            this.textBoxTest.Size = new System.Drawing.Size(51, 20);
-            this.textBoxTest.TabIndex = 33;
-            this.textBoxTest.TextChanged += new System.EventHandler(this.textBoxTest_TextChanged);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(571, 260);
@@ -403,7 +397,7 @@
             this.richTextBoxDisplay.Location = new System.Drawing.Point(171, 56);
             this.richTextBoxDisplay.Multiline = false;
             this.richTextBoxDisplay.Name = "richTextBoxDisplay";
-            this.richTextBoxDisplay.Size = new System.Drawing.Size(334, 69);
+            this.richTextBoxDisplay.Size = new System.Drawing.Size(352, 69);
             this.richTextBoxDisplay.TabIndex = 38;
             this.richTextBoxDisplay.Text = "";
             this.richTextBoxDisplay.WordWrap = false;
@@ -477,7 +471,7 @@
             // 
             // buttonWord
             // 
-            this.buttonWord.Location = new System.Drawing.Point(271, 12);
+            this.buttonWord.Location = new System.Drawing.Point(381, 12);
             this.buttonWord.Name = "buttonWord";
             this.buttonWord.Size = new System.Drawing.Size(124, 38);
             this.buttonWord.TabIndex = 47;
@@ -528,12 +522,51 @@
             this.richTextBoxGuessed.TabIndex = 51;
             this.richTextBoxGuessed.Text = "";
             // 
+            // comboBoxWordlist
+            // 
+            this.comboBoxWordlist.FormattingEnabled = true;
+            this.comboBoxWordlist.Items.AddRange(new object[] {
+            "Random Words (English)",
+            "Countries (English)"});
+            this.comboBoxWordlist.Location = new System.Drawing.Point(171, 12);
+            this.comboBoxWordlist.Name = "comboBoxWordlist";
+            this.comboBoxWordlist.Size = new System.Drawing.Size(28, 21);
+            this.comboBoxWordlist.TabIndex = 52;
+            this.comboBoxWordlist.SelectedIndexChanged += new System.EventHandler(this.comboBoxWordlist_SelectedIndexChanged);
+            // 
+            // radioButtonRandom
+            // 
+            this.radioButtonRandom.AutoSize = true;
+            this.radioButtonRandom.Location = new System.Drawing.Point(255, 12);
+            this.radioButtonRandom.Name = "radioButtonRandom";
+            this.radioButtonRandom.Size = new System.Drawing.Size(65, 17);
+            this.radioButtonRandom.TabIndex = 53;
+            this.radioButtonRandom.TabStop = true;
+            this.radioButtonRandom.Text = "Random";
+            this.radioButtonRandom.UseVisualStyleBackColor = true;
+            this.radioButtonRandom.CheckedChanged += new System.EventHandler(this.radioButtonRandom_CheckedChanged);
+            // 
+            // radioButtonCountries
+            // 
+            this.radioButtonCountries.AutoSize = true;
+            this.radioButtonCountries.Location = new System.Drawing.Point(255, 33);
+            this.radioButtonCountries.Name = "radioButtonCountries";
+            this.radioButtonCountries.Size = new System.Drawing.Size(69, 17);
+            this.radioButtonCountries.TabIndex = 54;
+            this.radioButtonCountries.TabStop = true;
+            this.radioButtonCountries.Text = "Countries";
+            this.radioButtonCountries.UseVisualStyleBackColor = true;
+            this.radioButtonCountries.CheckedChanged += new System.EventHandler(this.radioButtonCountries_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(677, 394);
+            this.Controls.Add(this.radioButtonCountries);
+            this.Controls.Add(this.radioButtonRandom);
+            this.Controls.Add(this.comboBoxWordlist);
             this.Controls.Add(this.richTextBoxGuessed);
             this.Controls.Add(this.radioButtonHard);
             this.Controls.Add(this.radioButtonMedium);
@@ -551,7 +584,6 @@
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBoxTest);
             this.Controls.Add(this.buttonNew);
             this.Controls.Add(this.button34);
             this.Controls.Add(this.button35);
@@ -621,7 +653,6 @@
         private System.Windows.Forms.Button button34;
         private System.Windows.Forms.Button button35;
         private System.Windows.Forms.Button buttonNew;
-        private System.Windows.Forms.TextBox textBoxTest;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
@@ -639,6 +670,9 @@
         private System.Windows.Forms.RadioButton radioButtonMedium;
         private System.Windows.Forms.RadioButton radioButtonHard;
         private System.Windows.Forms.RichTextBox richTextBoxGuessed;
+        private System.Windows.Forms.ComboBox comboBoxWordlist;
+        private System.Windows.Forms.RadioButton radioButtonRandom;
+        private System.Windows.Forms.RadioButton radioButtonCountries;
     }
 }
 

@@ -25,6 +25,10 @@ using System.Drawing.Drawing2D;
  *  english and swedish modes
  *  level scheme - level 1 - 10, 4 letters, 11-20 5 letters, etc
  *  arranage words by topic? 
+ *  consider using a bindingsource with the combobox
+ *  fix the wordlist[10] hardcoding
+ *  put radiobuttons in a group box
+ *  words with more than 1 word (el salvador for example)... not sure what happens about that " ". I think it becomes a _. fix it!  
 */
 namespace Hangman
 {
@@ -33,6 +37,7 @@ namespace Hangman
         private Hangman h;
         private int difficultyStatus; // 0,1,2 - easy, medium, hard - so we can programmer user preference
         private int lives;
+        private string wordlist; // keeps track of the wordlists being used until ready to be passed to h.Load()
         private string[] lines;
                 
         public Main()
@@ -43,6 +48,7 @@ namespace Hangman
             textBoxLives.Enabled = false;
             richTextBoxEntry.Enabled = false;
             textBoxGuessed.Enabled = false;
+            wordlist = "random";
 
             // Display Text box
             richTextBoxDisplay.SelectAll();
@@ -83,17 +89,36 @@ namespace Hangman
             radioButtonMedium.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
             radioButtonHard.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
 
+            // Combobox
+            comboBoxWordlist.Visible = false; // hide for now
+            comboBoxWordlist.SelectedIndex = 0;
+            comboBoxWordlist.DropDownStyle = ComboBoxStyle.DropDownList; // makes combobox a select-only list
+            //comboBoxWordlist.AutoCompleteSource = AutoCompleteSource.ListItems;
+            //comboBoxWordlist.AutoCompleteMode = AutoCompleteMode.Suggest;
+
+            // Wordlists
+            radioButtonCountries.Checked = false;
+            radioButtonRandom.Checked = true;
+
             // Hide diagnostic buttons
             textBox1.Visible = false;
             textBoxLives.Visible = false;
-            textBoxTest.Visible = false;
             labelLives.Visible = false;
             buttonWord.Visible = false; 
         }
 
         private void Hangman_Load(object sender, EventArgs e)
         {
-            
+            if (wordlist == "random")
+            {
+                radioButtonRandom.Checked = true;
+            }
+
+            else if (wordlist == "countries")
+            {
+                radioButtonCountries.Checked = true;
+            }
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -118,17 +143,20 @@ namespace Hangman
             // Create a new instance for each game 
             // Easiest way - uses constructed to initialise everything
             h = new Hangman(); 
-            lines = h.Load(); // Loads the list of words
+            //lines = h.Load(); // Loads the list of words
+            lines = h.Load(wordlist); //Loads the List of words
             h.Lives = lives; // Gives lives according to difficulty    
             textBoxLives.Text = Convert.ToString(h.Lives);
             richTextBoxLives.Text = Convert.ToString(h.Lives);
             textBoxGuessed.Text = h.GuessedValues;
             richTextBoxGuessed.Text = h.GuessedValues;
 
-            // Don't let user change diffculty during game
+            // Don't let user change diffculty or wordlists during game
             radioButtonEasy.Enabled = false;
             radioButtonMedium.Enabled = false;
             radioButtonHard.Enabled = false;
+            radioButtonCountries.Enabled = false;
+            radioButtonRandom.Enabled = false;
 
             string st = "";
             int num = 0;
@@ -166,13 +194,7 @@ namespace Hangman
             }
         }
 
-        // Draws the dashed lines based on the entered number
-        private void textBoxTest_TextChanged(object sender, EventArgs e)
-        {
-            Hangman h = new Hangman();
-
-            richTextBoxDisplay.Text=h.Draw(textBoxTest.Text, 10);           
-        }
+        
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
@@ -205,7 +227,7 @@ namespace Hangman
             {
                 textBoxAlreadyGuessed.Text = ""; // Reset the notification
                 h.GuessedValues += richTextBoxEntry.Text; // add entered text to guessed values
-                h.GuessedValues += "-"; // nicer formatting
+                h.GuessedValues += " "; // nicer formatting
                 textBoxGuessed.Text = h.GuessedValues; // display it
                 richTextBoxGuessed.Text = h.GuessedValues;
 
@@ -291,6 +313,9 @@ namespace Hangman
             radioButtonEasy.Enabled = true;
             radioButtonMedium.Enabled = true;
             radioButtonHard.Enabled = true;
+            radioButtonRandom.Enabled = true;
+            radioButtonCountries.Enabled = true;
+
             switch(difficultyStatus)
             {
                 case 0:
@@ -312,6 +337,21 @@ namespace Hangman
                     radioButtonHard.Checked = true;
                     break;
             }            
+        }
+
+        private void comboBoxWordlist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void radioButtonCountries_CheckedChanged(object sender, EventArgs e)
+        {
+            wordlist = "countries";
+        }
+
+        private void radioButtonRandom_CheckedChanged(object sender, EventArgs e)
+        {
+            wordlist = "random";
         }
     }
 }

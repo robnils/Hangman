@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.buttonNew = new System.Windows.Forms.Button();
             this.richTextBoxDisplay = new System.Windows.Forms.RichTextBox();
             this.richTextBoxEntry = new System.Windows.Forms.RichTextBox();
@@ -263,6 +264,7 @@
             this.Controls.Add(this.buttonNew);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "HangMania v.0.2";
             this.Load += new System.EventHandler(this.Hangman_Load);

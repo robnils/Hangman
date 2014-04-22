@@ -154,6 +154,16 @@ namespace Hangman
             }
 
             lines = System.IO.File.ReadAllLines(s);
+            /*try
+            {
+                lines = System.IO.File.ReadAllLines(s);
+
+                //if (File.Exists != true) ;
+            }
+            catch(FileNotFoundException e)
+            {
+                return e.Message;
+            }*/
 
             return lines;
         }

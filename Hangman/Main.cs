@@ -14,9 +14,14 @@ using System.Drawing.Drawing2D;
 /* Update v.0.2
  * TO DO
  * fix spaces being recognised as a character
+ * file exception handling
+ * 
  * DONE
  * "You already guessed" appearing if you click New Game in the middle of the game
  * Made editable boxes not editable
+ * Fixed CountriesSwe data
+ * Fixed bug where "Enter" and "Space" counted as valid guesses
+ * Added icons so game doesnt look so unknown and scary
  * */
 
 /*** IDEAS ****/
@@ -176,6 +181,7 @@ namespace Hangman
             richTextBoxLives.Text = Convert.ToString(h.Lives);
             richTextBoxGuessed.Text = h.GuessedValues;
             textBoxAlreadyGuessed.Text = "";
+            richTextBoxEntry.Text = "";
 
             // Don't let user change diffculty or wordlists during game
             radioButtonEasy.Enabled = false;
@@ -252,55 +258,63 @@ namespace Hangman
             // One user hits enter, accept the letter and clear the textbox
             if (e.KeyCode == Keys.Enter)
             {
-                textBoxAlreadyGuessed.Text = ""; // Reset the notification
-                h.GuessedValues += richTextBoxEntry.Text; // add entered text to guessed values
-                h.GuessedValues += " "; // nicer formatting
-                richTextBoxGuessed.Text = h.GuessedValues;
-
-                // 
-                // Add code to test if the key is correct, was entered before, deduct lives
-                //
-                // If character is guessed correctly (returns true)
-                h.Test(richTextBoxEntry.Text);                    
-                
-                // If the game is over, stop
-                if(h.GameOver == true)
+                // Test to make sure input is a letter
+                // Done for 1) good data reasons, and 2) so enter, space, numbers, etc don't count as guesses
+                // For some reason, "" counts... The code below fixes it
+                if (richTextBoxEntry.Text.All(Char.IsLetter) && (richTextBoxEntry.Text != ""))
                 {
-                    
-                    // Graphical glitch quick fix
-                    richTextBoxLives.Text = "0";
-                    h.Lives = 0; // for some reason this doesn't work properly in the class
+                    textBoxAlreadyGuessed.Text = ""; // Reset the notification
+                    h.GuessedValues += richTextBoxEntry.Text; // add entered text to guessed values
+                    h.GuessedValues += " "; // nicer formatting
+                    richTextBoxGuessed.Text = h.GuessedValues;
 
-                    // Reveal all the letters 
-                    richTextBoxDisplay.Text = h.AddSpaces(h.CurrentWord);
+                    // 
+                    // Add code to test if the key is correct, was entered before, deduct lives
+                    //
+                    // If character is guessed correctly (returns true)
+                    h.Test(richTextBoxEntry.Text);
 
-                    // Make boxes enabled/disabled
-                    richTextBoxEntry.Enabled = false;
+                    // If the game is over, stop
+                    if (h.GameOver == true)
+                    {
 
-                    if (h.GameWin == false)                     
-                        MessageBox.Show("Too bad, you lose!",
-                            "Game over!", MessageBoxButtons.OK);                    
+                        // Graphical glitch quick fix
+                        richTextBoxLives.Text = "0";
+                        h.Lives = 0; // for some reason this doesn't work properly in the class
 
-                    else
-                        MessageBox.Show("Congratulations, you win!",
-                            "Game over!", MessageBoxButtons.OK);
-                    Clear();
-                    Hangman_Load(sender, e);
-                }
+                        // Reveal all the letters 
+                        richTextBoxDisplay.Text = h.AddSpaces(h.CurrentWord);
 
-                if (h.Lives != 0)
-                {
-                    // If the user already guessed the letter, let them know
-                    if (h.AlreadyGuess)
-                        textBoxAlreadyGuessed.Text = "You already guessed " + richTextBoxEntry.Text
-                            + "!";
+                        // Make boxes enabled/disabled
+                        richTextBoxEntry.Enabled = false;
 
-                    // Carry on otherwise
-                    richTextBoxLives.Text = Convert.ToString(h.Lives);
-                    richTextBoxDisplay.Text = h.AddSpaces(h.Guessword);
-                    richTextBoxEntry.Text = ""; // clear entry box
+                        if (h.GameWin == false)
+                            MessageBox.Show("Too bad, you lose!",
+                                "Game over!", MessageBoxButtons.OK);
+
+                        else
+                            MessageBox.Show("Congratulations, you win!",
+                                "Game over!", MessageBoxButtons.OK);
+                        Clear();
+                        Hangman_Load(sender, e);
+                    }
+
+                    if (h.Lives != 0)
+                    {
+                        // If the user already guessed the letter, let them know
+                        if (h.AlreadyGuess)
+                            textBoxAlreadyGuessed.Text = "You already guessed " + richTextBoxEntry.Text
+                                + "!";
+
+                        // Carry on otherwise
+                        richTextBoxLives.Text = Convert.ToString(h.Lives);
+                        richTextBoxDisplay.Text = h.AddSpaces(h.Guessword);
+                        richTextBoxEntry.Text = ""; // clear entry box
+                    }
                 }
             }
+            else
+                richTextBoxEntry.Text = "";
         }
 
         private void radioButtonEasy_CheckedChanged(object sender, EventArgs e)

@@ -11,6 +11,14 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
 
+/* Update v.0.2
+ * TO DO
+ * fix spaces being recognised as a character
+ * DONE
+ * "You already guessed" appearing if you click New Game in the middle of the game
+ * Made editable boxes not editable
+ * */
+
 /*** IDEAS ****/
 /* Use an array to store the names of the buttons - like button1.Text = names[1] - easier to switch languages
  * also makes the switch case MUCH easier and not hardcoded
@@ -44,32 +52,34 @@ namespace Hangman
         {
             InitializeComponent();
 
-            // Initialisations
-            textBoxLives.Enabled = false;
-            richTextBoxEntry.Enabled = false;
-            textBoxGuessed.Enabled = false;
+            // Initialisations           
             wordlist = "randomEng";
-
+                       
             // Display Text box
+            richTextBoxDisplay.Enabled = false;
             richTextBoxDisplay.SelectAll();
             richTextBoxDisplay.SelectionAlignment = HorizontalAlignment.Center;
             richTextBoxDisplay.Font = new Font("Comic Sans MS", 25.0F, FontStyle.Regular);
             richTextBoxDisplay.ForeColor = Color.Blue;
+            richTextBoxDisplay.BackColor = Color.Yellow;
 
-            // Typing text box
+            // Typing text box         
+            richTextBoxEntry.Enabled = false;
             richTextBoxEntry.SelectAll();
             richTextBoxEntry.SelectionAlignment = HorizontalAlignment.Center;
             richTextBoxEntry.Font = new Font("Comic Sans MS", 25.0F, FontStyle.Regular);
             richTextBoxEntry.ForeColor = Color.Red;
 
             // Lives text box
+            richTextBoxLives.Enabled = false;
             richTextBoxLives.SelectAll();
             richTextBoxLives.SelectionAlignment = HorizontalAlignment.Center;
             richTextBoxLives.Font = new Font("Comic Sans MS", 55.0F, FontStyle.Regular);
             richTextBoxLives.ForeColor = Color.Green;
 
             // Guessed Values
-            textBoxGuessed.Visible = false;
+            textBoxAlreadyGuessed.Enabled = false;
+            richTextBoxGuessed.Enabled = false;
             richTextBoxGuessed.SelectAll();
             richTextBoxGuessed.SelectionAlignment = HorizontalAlignment.Center;
             richTextBoxGuessed.Font = new Font("Comic Sans MS", 35.0F, FontStyle.Regular);
@@ -82,6 +92,7 @@ namespace Hangman
 
             // Buttons
             buttonNew.Font = new Font("Comic Sans MS", 12.0F, FontStyle.Bold);
+            buttonAbout.Font = new Font("Comic Sans MS", 12.0F, FontStyle.Bold);
             buttonExit.Font = new Font("Comic Sans MS", 12.0F, FontStyle.Bold);
 
             // Radiobuttons
@@ -90,7 +101,7 @@ namespace Hangman
             radioButtonHard.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Regular);
 
             // Combobox
-            comboBoxWordlist.Visible = false; // hide for now
+            //comboBoxWordlist.Visible = false; // hide for now
             //comboBoxWordlist.SelectedIndex = 0;
             //comboBoxWordlist.DropDownStyle = ComboBoxStyle.DropDownList; // makes combobox a select-only list
             //comboBoxWordlist.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -112,9 +123,6 @@ namespace Hangman
             groupBoxWordlists.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
 
             // Hide diagnostic buttons
-            textBox1.Visible = false;
-            textBoxLives.Visible = false;
-            labelLives.Visible = false;
             buttonWord.Visible = false; 
         }
 
@@ -161,15 +169,13 @@ namespace Hangman
         private void button7_Click(object sender, EventArgs e)
         {
             // Create a new instance for each game 
-            // Easiest way - uses constructed to initialise everything
+            // Easiest way - uses constructor to initialise everything
             h = new Hangman(); 
-            //lines = h.Load(); // Loads the list of words
             lines = h.Load(wordlist); //Loads the List of words
             h.Lives = lives; // Gives lives according to difficulty    
-            textBoxLives.Text = Convert.ToString(h.Lives);
             richTextBoxLives.Text = Convert.ToString(h.Lives);
-            textBoxGuessed.Text = h.GuessedValues;
             richTextBoxGuessed.Text = h.GuessedValues;
+            textBoxAlreadyGuessed.Text = "";
 
             // Don't let user change diffculty or wordlists during game
             radioButtonEasy.Enabled = false;
@@ -184,7 +190,6 @@ namespace Hangman
             int num = 0;
             st = h.ReturnRnd(); // returns a random word from the list
             h.CurrentWord = st; // Updates the class with the current word
-            textBox1.Text = st; // Diagnostic purposes
 
             foreach (char c in st)
             {
@@ -250,7 +255,6 @@ namespace Hangman
                 textBoxAlreadyGuessed.Text = ""; // Reset the notification
                 h.GuessedValues += richTextBoxEntry.Text; // add entered text to guessed values
                 h.GuessedValues += " "; // nicer formatting
-                textBoxGuessed.Text = h.GuessedValues; // display it
                 richTextBoxGuessed.Text = h.GuessedValues;
 
                 // 
@@ -264,7 +268,6 @@ namespace Hangman
                 {
                     
                     // Graphical glitch quick fix
-                    textBoxLives.Text = "0";
                     richTextBoxLives.Text = "0";
                     h.Lives = 0; // for some reason this doesn't work properly in the class
 
@@ -293,7 +296,6 @@ namespace Hangman
                             + "!";
 
                     // Carry on otherwise
-                    textBoxLives.Text = Convert.ToString(h.Lives);
                     richTextBoxLives.Text = Convert.ToString(h.Lives);
                     richTextBoxDisplay.Text = h.AddSpaces(h.Guessword);
                     richTextBoxEntry.Text = ""; // clear entry box
@@ -325,7 +327,6 @@ namespace Hangman
             richTextBoxLives.Text = " ";
             richTextBoxDisplay.Text = " ";
             richTextBoxEntry.Text = " ";
-            textBoxGuessed.Text = " ";
             richTextBoxGuessed.Text = " ";
 
             // Rename "New Game" button
@@ -386,6 +387,12 @@ namespace Hangman
         private void radioButtonCountriesSwe_CheckedChanged(object sender, EventArgs e)
         {
             wordlist = "countriesSwe";
+        }
+
+        private void buttonAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Created by Robert Nils Hilliard 2014.\nCompletely free and without warranty."
+                , "About the creator",MessageBoxButtons.OK);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace Hangman
             textBoxLives.Enabled = false;
             richTextBoxEntry.Enabled = false;
             textBoxGuessed.Enabled = false;
-            wordlist = "random";
+            wordlist = "randomEng";
 
             // Display Text box
             richTextBoxDisplay.SelectAll();
@@ -85,20 +85,31 @@ namespace Hangman
             buttonExit.Font = new Font("Comic Sans MS", 12.0F, FontStyle.Bold);
 
             // Radiobuttons
-            radioButtonEasy.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
-            radioButtonMedium.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
-            radioButtonHard.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
+            radioButtonEasy.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Regular);
+            radioButtonMedium.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Regular);
+            radioButtonHard.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Regular);
 
             // Combobox
             comboBoxWordlist.Visible = false; // hide for now
-            comboBoxWordlist.SelectedIndex = 0;
-            comboBoxWordlist.DropDownStyle = ComboBoxStyle.DropDownList; // makes combobox a select-only list
+            //comboBoxWordlist.SelectedIndex = 0;
+            //comboBoxWordlist.DropDownStyle = ComboBoxStyle.DropDownList; // makes combobox a select-only list
             //comboBoxWordlist.AutoCompleteSource = AutoCompleteSource.ListItems;
             //comboBoxWordlist.AutoCompleteMode = AutoCompleteMode.Suggest;
 
             // Wordlists
             radioButtonCountries.Checked = false;
             radioButtonRandom.Checked = true;
+            radioButtonCountriesSwe.Checked = false;
+            radioButtonRandomSwe.Checked = false;
+
+            radioButtonCountries.Font = new Font("Comic Sans MS", 8.0F, FontStyle.Regular);
+            radioButtonRandom.Font = new Font("Comic Sans MS", 8.0F, FontStyle.Regular);
+            radioButtonCountriesSwe.Font = new Font("Comic Sans MS", 8.0F, FontStyle.Regular);
+            radioButtonRandomSwe.Font = new Font("Comic Sans MS", 8.0F, FontStyle.Regular);
+
+            // Groupbox text
+            groupBoxDifficulty.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
+            groupBoxWordlists.Font = new Font("Comic Sans MS", 9.0F, FontStyle.Bold);
 
             // Hide diagnostic buttons
             textBox1.Visible = false;
@@ -109,16 +120,25 @@ namespace Hangman
 
         private void Hangman_Load(object sender, EventArgs e)
         {
-            if (wordlist == "random")
+            if (wordlist == "randomEng")
             {
                 radioButtonRandom.Checked = true;
             }
 
-            else if (wordlist == "countries")
+            else if (wordlist == "countriesEng")
             {
                 radioButtonCountries.Checked = true;
             }
 
+            else if (wordlist == "randomSwe")
+            {
+                radioButtonRandomSwe.Checked = true;
+            }
+
+            else if (wordlist == "countriesSwe")
+            {
+                radioButtonCountriesSwe.Checked = true;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -157,6 +177,8 @@ namespace Hangman
             radioButtonHard.Enabled = false;
             radioButtonCountries.Enabled = false;
             radioButtonRandom.Enabled = false;
+            radioButtonCountriesSwe.Enabled = false;
+            radioButtonRandomSwe.Enabled = false;
 
             string st = "";
             int num = 0;
@@ -309,12 +331,14 @@ namespace Hangman
             // Rename "New Game" button
             buttonNew.Text = "Play again?";
 
-            // Difficulty settings
+            // Difficulty & Wordlist settings
             radioButtonEasy.Enabled = true;
             radioButtonMedium.Enabled = true;
             radioButtonHard.Enabled = true;
             radioButtonRandom.Enabled = true;
             radioButtonCountries.Enabled = true;
+            radioButtonRandomSwe.Enabled = true;
+            radioButtonCountriesSwe.Enabled = true;
 
             switch(difficultyStatus)
             {
@@ -346,12 +370,22 @@ namespace Hangman
 
         private void radioButtonCountries_CheckedChanged(object sender, EventArgs e)
         {
-            wordlist = "countries";
+            wordlist = "countriesEng";
         }
 
         private void radioButtonRandom_CheckedChanged(object sender, EventArgs e)
         {
-            wordlist = "random";
+            wordlist = "randomEng";
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            wordlist = "randomSwe";
+        }
+
+        private void radioButtonCountriesSwe_CheckedChanged(object sender, EventArgs e)
+        {
+            wordlist = "countriesSwe";
         }
     }
 }

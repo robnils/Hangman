@@ -10,11 +10,12 @@ namespace Hangman
 {
     class Hangman
     {
-        private Random r;
-        private string[] lines; // Imported wordlist
-        private string[] occurred; // list of words that came up before in the Random()
+        //private string[] occurred; // list of words that came up before in the Random()
+        //private bool firstuse = true;
         private int correctGuesses; // when this number equals length of currentWord, they win
-        private bool firstuse = true;
+        private Random r;
+        private string[] lines; // Imported wordlist        
+
         char guessChar; // Guessed character from user
 
         private bool alreadyGuess; // a flag to test if the letter has been already guessed
@@ -134,16 +135,19 @@ namespace Hangman
         {
             string s = Directory.GetCurrentDirectory();
 
-            switch (wordlist.ToLower())
+            switch (wordlist) // had .ToLower here, screwed up the switch case
             {
-                case "random":
-                    s += "\\Words_Random.txt";
+                case "randomEng":
+                    s += "\\Wordlists\\Words_Random_Eng.txt";
                     break;
-                case "swedish":
-                    s += "\\Words_Swe.txt";
+                case "countriesEng":
+                    s += "\\Wordlists\\Words_Countries_Eng.txt";
                     break;
-                case "countries":
-                    s += "\\Words_Countries.txt";
+                case "randomSwe":
+                    s += "\\Wordlists\\Words_Random_Swe.txt";
+                    break;
+                case "countriesSwe":
+                    s += "\\Wordlists\\Words_Countries_Swe.txt";
                     break;
                 default:
                     break;
@@ -155,6 +159,12 @@ namespace Hangman
         }
 
         // Returns a random word from the list of words
+        public string ReturnRnd()
+        {
+            return (lines[r.Next(0, lines.Length)]).ToUpper();
+        }
+
+        /* Incomplete and probably broken. Also not practical at the moment.
         public string ReturnRnd()
         {
             string rndwrd = "";
@@ -185,7 +195,7 @@ namespace Hangman
             }
 
             return rndwrd;
-        }
+        }*/
 
         // Test the entered character
         // True if they got it correct, false otherwise

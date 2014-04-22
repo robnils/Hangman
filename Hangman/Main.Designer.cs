@@ -76,6 +76,12 @@
             this.comboBoxWordlist = new System.Windows.Forms.ComboBox();
             this.radioButtonRandom = new System.Windows.Forms.RadioButton();
             this.radioButtonCountries = new System.Windows.Forms.RadioButton();
+            this.groupBoxDifficulty = new System.Windows.Forms.GroupBox();
+            this.groupBoxWordlists = new System.Windows.Forms.GroupBox();
+            this.radioButtonRandomSwe = new System.Windows.Forms.RadioButton();
+            this.radioButtonCountriesSwe = new System.Windows.Forms.RadioButton();
+            this.groupBoxDifficulty.SuspendLayout();
+            this.groupBoxWordlists.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonQ
@@ -394,7 +400,7 @@
             // 
             // richTextBoxDisplay
             // 
-            this.richTextBoxDisplay.Location = new System.Drawing.Point(171, 56);
+            this.richTextBoxDisplay.Location = new System.Drawing.Point(171, 81);
             this.richTextBoxDisplay.Multiline = false;
             this.richTextBoxDisplay.Name = "richTextBoxDisplay";
             this.richTextBoxDisplay.Size = new System.Drawing.Size(352, 69);
@@ -404,7 +410,7 @@
             // 
             // richTextBoxEntry
             // 
-            this.richTextBoxEntry.Location = new System.Drawing.Point(271, 176);
+            this.richTextBoxEntry.Location = new System.Drawing.Point(273, 186);
             this.richTextBoxEntry.Name = "richTextBoxEntry";
             this.richTextBoxEntry.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.richTextBoxEntry.Size = new System.Drawing.Size(144, 53);
@@ -433,9 +439,9 @@
             // 
             // textBoxGuessed
             // 
-            this.textBoxGuessed.Location = new System.Drawing.Point(464, 131);
+            this.textBoxGuessed.Location = new System.Drawing.Point(604, 131);
             this.textBoxGuessed.Name = "textBoxGuessed";
-            this.textBoxGuessed.Size = new System.Drawing.Size(182, 20);
+            this.textBoxGuessed.Size = new System.Drawing.Size(50, 20);
             this.textBoxGuessed.TabIndex = 42;
             // 
             // textBoxLives
@@ -456,9 +462,9 @@
             // 
             // textBoxAlreadyGuessed
             // 
-            this.textBoxAlreadyGuessed.Location = new System.Drawing.Point(271, 131);
+            this.textBoxAlreadyGuessed.Location = new System.Drawing.Point(273, 157);
             this.textBoxAlreadyGuessed.Name = "textBoxAlreadyGuessed";
-            this.textBoxAlreadyGuessed.Size = new System.Drawing.Size(146, 20);
+            this.textBoxAlreadyGuessed.Size = new System.Drawing.Size(144, 20);
             this.textBoxAlreadyGuessed.TabIndex = 45;
             // 
             // richTextBoxLives
@@ -471,9 +477,9 @@
             // 
             // buttonWord
             // 
-            this.buttonWord.Location = new System.Drawing.Point(381, 12);
+            this.buttonWord.Location = new System.Drawing.Point(566, 121);
             this.buttonWord.Name = "buttonWord";
-            this.buttonWord.Size = new System.Drawing.Size(124, 38);
+            this.buttonWord.Size = new System.Drawing.Size(23, 38);
             this.buttonWord.TabIndex = 47;
             this.buttonWord.Text = "Add Custom Wordlist...";
             this.buttonWord.UseVisualStyleBackColor = true;
@@ -481,7 +487,7 @@
             // radioButtonEasy
             // 
             this.radioButtonEasy.AutoSize = true;
-            this.radioButtonEasy.Location = new System.Drawing.Point(545, 165);
+            this.radioButtonEasy.Location = new System.Drawing.Point(11, 19);
             this.radioButtonEasy.Name = "radioButtonEasy";
             this.radioButtonEasy.Size = new System.Drawing.Size(87, 17);
             this.radioButtonEasy.TabIndex = 48;
@@ -493,7 +499,7 @@
             // radioButtonMedium
             // 
             this.radioButtonMedium.AutoSize = true;
-            this.radioButtonMedium.Location = new System.Drawing.Point(545, 202);
+            this.radioButtonMedium.Location = new System.Drawing.Point(11, 42);
             this.radioButtonMedium.Name = "radioButtonMedium";
             this.radioButtonMedium.Size = new System.Drawing.Size(101, 17);
             this.radioButtonMedium.TabIndex = 49;
@@ -505,7 +511,7 @@
             // radioButtonHard
             // 
             this.radioButtonHard.AutoSize = true;
-            this.radioButtonHard.Location = new System.Drawing.Point(545, 237);
+            this.radioButtonHard.Location = new System.Drawing.Point(11, 65);
             this.radioButtonHard.Name = "radioButtonHard";
             this.radioButtonHard.Size = new System.Drawing.Size(87, 17);
             this.radioButtonHard.TabIndex = 50;
@@ -528,7 +534,7 @@
             this.comboBoxWordlist.Items.AddRange(new object[] {
             "Random Words (English)",
             "Countries (English)"});
-            this.comboBoxWordlist.Location = new System.Drawing.Point(171, 12);
+            this.comboBoxWordlist.Location = new System.Drawing.Point(532, 121);
             this.comboBoxWordlist.Name = "comboBoxWordlist";
             this.comboBoxWordlist.Size = new System.Drawing.Size(28, 21);
             this.comboBoxWordlist.TabIndex = 52;
@@ -537,26 +543,75 @@
             // radioButtonRandom
             // 
             this.radioButtonRandom.AutoSize = true;
-            this.radioButtonRandom.Location = new System.Drawing.Point(255, 12);
+            this.radioButtonRandom.Location = new System.Drawing.Point(9, 14);
             this.radioButtonRandom.Name = "radioButtonRandom";
-            this.radioButtonRandom.Size = new System.Drawing.Size(65, 17);
+            this.radioButtonRandom.Size = new System.Drawing.Size(108, 17);
             this.radioButtonRandom.TabIndex = 53;
             this.radioButtonRandom.TabStop = true;
-            this.radioButtonRandom.Text = "Random";
+            this.radioButtonRandom.Text = "Random (English)";
             this.radioButtonRandom.UseVisualStyleBackColor = true;
             this.radioButtonRandom.CheckedChanged += new System.EventHandler(this.radioButtonRandom_CheckedChanged);
             // 
             // radioButtonCountries
             // 
             this.radioButtonCountries.AutoSize = true;
-            this.radioButtonCountries.Location = new System.Drawing.Point(255, 33);
+            this.radioButtonCountries.Location = new System.Drawing.Point(136, 14);
             this.radioButtonCountries.Name = "radioButtonCountries";
-            this.radioButtonCountries.Size = new System.Drawing.Size(69, 17);
+            this.radioButtonCountries.Size = new System.Drawing.Size(112, 17);
             this.radioButtonCountries.TabIndex = 54;
             this.radioButtonCountries.TabStop = true;
-            this.radioButtonCountries.Text = "Countries";
+            this.radioButtonCountries.Text = "Countries (English)";
             this.radioButtonCountries.UseVisualStyleBackColor = true;
             this.radioButtonCountries.CheckedChanged += new System.EventHandler(this.radioButtonCountries_CheckedChanged);
+            // 
+            // groupBoxDifficulty
+            // 
+            this.groupBoxDifficulty.Controls.Add(this.radioButtonHard);
+            this.groupBoxDifficulty.Controls.Add(this.radioButtonEasy);
+            this.groupBoxDifficulty.Controls.Add(this.radioButtonMedium);
+            this.groupBoxDifficulty.Location = new System.Drawing.Point(515, 157);
+            this.groupBoxDifficulty.Name = "groupBoxDifficulty";
+            this.groupBoxDifficulty.Size = new System.Drawing.Size(131, 97);
+            this.groupBoxDifficulty.TabIndex = 55;
+            this.groupBoxDifficulty.TabStop = false;
+            this.groupBoxDifficulty.Text = "Difficulty";
+            // 
+            // groupBoxWordlists
+            // 
+            this.groupBoxWordlists.Controls.Add(this.radioButtonCountriesSwe);
+            this.groupBoxWordlists.Controls.Add(this.radioButtonRandomSwe);
+            this.groupBoxWordlists.Controls.Add(this.radioButtonCountries);
+            this.groupBoxWordlists.Controls.Add(this.radioButtonRandom);
+            this.groupBoxWordlists.Location = new System.Drawing.Point(241, 12);
+            this.groupBoxWordlists.Name = "groupBoxWordlists";
+            this.groupBoxWordlists.Size = new System.Drawing.Size(274, 61);
+            this.groupBoxWordlists.TabIndex = 56;
+            this.groupBoxWordlists.TabStop = false;
+            this.groupBoxWordlists.Text = "Wordlists";
+            // 
+            // radioButtonRandomSwe
+            // 
+            this.radioButtonRandomSwe.AutoSize = true;
+            this.radioButtonRandomSwe.Location = new System.Drawing.Point(9, 31);
+            this.radioButtonRandomSwe.Name = "radioButtonRandomSwe";
+            this.radioButtonRandomSwe.Size = new System.Drawing.Size(114, 17);
+            this.radioButtonRandomSwe.TabIndex = 55;
+            this.radioButtonRandomSwe.TabStop = true;
+            this.radioButtonRandomSwe.Text = "Random (Swedish)";
+            this.radioButtonRandomSwe.UseVisualStyleBackColor = true;
+            this.radioButtonRandomSwe.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButtonCountriesSwe
+            // 
+            this.radioButtonCountriesSwe.AutoSize = true;
+            this.radioButtonCountriesSwe.Location = new System.Drawing.Point(136, 31);
+            this.radioButtonCountriesSwe.Name = "radioButtonCountriesSwe";
+            this.radioButtonCountriesSwe.Size = new System.Drawing.Size(118, 17);
+            this.radioButtonCountriesSwe.TabIndex = 56;
+            this.radioButtonCountriesSwe.TabStop = true;
+            this.radioButtonCountriesSwe.Text = "Countries (Swedish)";
+            this.radioButtonCountriesSwe.UseVisualStyleBackColor = true;
+            this.radioButtonCountriesSwe.CheckedChanged += new System.EventHandler(this.radioButtonCountriesSwe_CheckedChanged);
             // 
             // Main
             // 
@@ -564,13 +619,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(677, 394);
-            this.Controls.Add(this.radioButtonCountries);
-            this.Controls.Add(this.radioButtonRandom);
+            this.Controls.Add(this.groupBoxWordlists);
+            this.Controls.Add(this.groupBoxDifficulty);
             this.Controls.Add(this.comboBoxWordlist);
             this.Controls.Add(this.richTextBoxGuessed);
-            this.Controls.Add(this.radioButtonHard);
-            this.Controls.Add(this.radioButtonMedium);
-            this.Controls.Add(this.radioButtonEasy);
             this.Controls.Add(this.buttonWord);
             this.Controls.Add(this.richTextBoxLives);
             this.Controls.Add(this.textBoxAlreadyGuessed);
@@ -618,6 +670,10 @@
             this.Text = "HangMania v.0.1";
             this.Load += new System.EventHandler(this.Hangman_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Hangman_Paint);
+            this.groupBoxDifficulty.ResumeLayout(false);
+            this.groupBoxDifficulty.PerformLayout();
+            this.groupBoxWordlists.ResumeLayout(false);
+            this.groupBoxWordlists.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -673,6 +729,10 @@
         private System.Windows.Forms.ComboBox comboBoxWordlist;
         private System.Windows.Forms.RadioButton radioButtonRandom;
         private System.Windows.Forms.RadioButton radioButtonCountries;
+        private System.Windows.Forms.GroupBox groupBoxDifficulty;
+        private System.Windows.Forms.GroupBox groupBoxWordlists;
+        private System.Windows.Forms.RadioButton radioButtonCountriesSwe;
+        private System.Windows.Forms.RadioButton radioButtonRandomSwe;
     }
 }
 
